@@ -1,0 +1,45 @@
+.container_inputsTitle{
+    width: 80vw;
+    margin: auto;
+    border-bottom:1px solid #E9E6E6 ;
+}
+.title_reservations{
+    text-align: center;
+}
+.container_inputs{
+    padding: 25px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.inputs {
+    width: 350px!important;
+}
+
+/* hours */
+.grid{
+    display: grid;
+    grid-gap:10px;
+    
+    
+}
+/* .container_resa{
+    width: 80vw;
+    margin: auto;
+}
+.title_hour{
+    text-align: start;
+    padding: 25px;
+}
+.container_hour{
+    display: flex;
+    justify-content: space-between;
+} */
+.hour{
+    text-align: center;
+    width: 100px;
+    padding: 5px;
+    color:white;
+    background-color: #f5a158;
+    border: 1px solid #838282;
+}

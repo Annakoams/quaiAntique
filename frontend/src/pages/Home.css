@@ -1,0 +1,284 @@
+.container_couvertureHome {
+    min-width: 100vw;
+    position: relative;
+    width: 100vw;
+}
+
+.img_couvertureHome {
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+}
+
+.title_et_btn {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title_couvertureHome {
+    background-color: rgba(0, 0, 0, 0.327);
+    padding: 25px;
+    color: white;
+    text-align: center;
+    font-family: Playfair Display;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+.btn_reservezVotreTable {
+    border-radius: 3px;
+    box-shadow: 0px 0px 23px 0px rgba(9, 10, 0, 0.75);
+    background-color: #334c81;
+    width: 180px;
+    height: 50px;
+    color: #f1f1f1;
+    cursor: pointer;
+    border: none;
+}
+
+
+/* section illustrations */
+.container_illustration {
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.illustration {
+    width: 15%;
+    box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+.title_illustrations {
+    height: 50px;
+    text-align: center;
+    color: white;
+    background-color: #334C81;
+}
+
+.image_illustration {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* section edito */
+.container_edito {
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+}
+
+.container_articleEdito {
+    width: 50vw;
+    padding-left: 20px;
+}
+
+.title_edito {
+    margin-top: 20px;
+    text-align: center;
+    font-family: PlayfairDisplay;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.article_edito {
+    text-align: center;
+    padding-top: 30px;
+
+}
+
+.image_edito {
+    /* width: 40vw; */
+    margin-left: 25px;
+    box-sizing: border-box;
+    width: 350px;
+    height: 450px;
+    height: auto;
+    object-fit: cover;
+}
+
+/* media grand mobile et petit tablette */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    .title_et_btn {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 500px;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .title_couvertureHome {
+        background-color: rgba(0, 0, 0, 0.327);
+        padding: 25px;
+        color: white;
+        text-align: center;
+        font-family: Playfair Display;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.1em;
+    }
+
+    .btn_reservezVotreTable {
+        border-radius: 3px;
+        box-shadow: 0px 0px 23px 0px rgba(9, 10, 0, 0.75);
+        background-color: #334c81;
+        width: 180px;
+        height: 50px;
+        color: #f1f1f1;
+        cursor: pointer;
+        border: none;
+    }
+
+    .illustration {
+        width: 100%;
+        box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+        padding: 25px;
+    }
+
+    /* edito */
+    .container_edito {
+        min-width: 80vw;
+        margin: auto;
+        padding-top: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .container_articleEdito {
+        width: 100vw;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image_edito {
+        box-sizing: border-box;
+        width: 100%;
+        object-fit: cover;
+        margin-top: 35px;
+        margin-left: 0px;
+        align-self: center;
+        padding: 25px;
+    }
+
+}
+
+/* media mobile */
+
+@media only screen and (max-width: 600px) {
+    .title_et_btn {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .title_couvertureHome {
+        color: white;
+        text-align: center;
+        font-family: Playfair Display;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.1em;
+    }
+
+    .btn_reservezVotreTable {
+        border-radius: 10px;
+        box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.75);
+        background-color: #334c81;
+        width: 150px;
+        height: 40px;
+        font-size: 14PX;
+        color: #f1f1f1;
+        cursor: pointer;
+        border: none;
+    }
+
+    /* illustartions */
+    .container_illustration {
+        width: 100%;
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        box-sizing: border-box;
+
+    }
+
+    .illustration {
+        width: 100%;
+        box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+        padding: 25px;
+    }
+
+    .title_illustrations {
+        height: 50px;
+        text-align: center;
+        color: white;
+        background-color: #334C81;
+    }
+
+    .image_illustration {
+        width: 100%;
+        height: 80vw;
+        object-fit: cover;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* edito */
+    .container_edito {
+        min-width: 80vw;
+        margin: auto;
+        padding-top: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .container_articleEdito {
+        width: 100vw;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image_edito {
+        box-sizing: border-box;
+        width: 100%;
+        object-fit: cover;
+        margin-top: 5px;
+        margin-left: 0px;
+        align-self: center;
+        padding: 25px;
+    }
+
+}

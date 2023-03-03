@@ -1,0 +1,70 @@
+1. users:
+- user_id
+- user_type(admin ou client)
+- password(crypte)
+- email 
+- allergies
+- nb_guests
+- name
+
+
+
+2. reservations
+ - reservation_id
+ - nb_guests
+ - reservation_date
+ - user_id
+ - allergies
+
+3. articles * (au lieu de couverture)
+- article_id
+- url_picture
+- title
+- content
+- target* ( home , menu , carte, edito )
+
+4. illustrations*
+- illustration_id*
+- url_picture
+- title
+- position*
+- active (boolean)*
+
+
+
+6. plats
+- plat_id
+- category
+- name
+- description*
+- price
+- position*
+- active (boolean)*
+
+
+
+7. menus
+- menu_id
+- name
+- description*
+- price
+- position*
+- active (boolean)*
+
+
+8.categories
+- categorie_id
+- name
+
+9. schedules*
+- schedule_id
+- day
+- open_time
+- close_time
+- nb_max_clients
+
+
+
+
+
+
