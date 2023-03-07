@@ -10,6 +10,7 @@
     padding: 25px;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 
 }
 .inputs {
@@ -17,13 +18,12 @@
 }
 
 /* hours */
-.grid{
-    display: grid;
-    grid-gap:10px;
-    
-    
+.container_resa{
+    width: 80vw;
+    margin: auto;
 }
-/* .container_resa{
+
+.container_titleHour{
     width: 80vw;
     margin: auto;
 }
@@ -33,13 +33,16 @@
 }
 .container_hour{
     display: flex;
-    justify-content: space-between;
-} */
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 25px;
+}
 .hour{
     text-align: center;
     width: 100px;
     padding: 5px;
-    color:white;
-    background-color: #f5a158;
+    color: white;
+    background-color: #e87511fa;
     border: 1px solid #838282;
+    margin: 5px;
 }

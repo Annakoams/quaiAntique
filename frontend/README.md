@@ -76,3 +76,9 @@ npm install react-bootstrap bootstrap
 npm i swiper
 npm i node-sass
 npm install react-bootstrap-icons --save
+
+fortawsome
+
+npm i --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome

@@ -1,0 +1,52 @@
+.section1_Admin{
+    margin: auto;
+}
+
+.container_couvertureAdmin{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.img_couvertureAdmin{
+    width: 100px;
+    
+}
+.title_couvertureAdmin{
+    font-style: 36px;
+}
+.modifier_image{
+    display: flex;
+    justify-content: start;
+    
+}
+.textModifier_image{
+    font-size: 12px;
+    width: 100px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.btnAjouter, .btnModifier{
+    width: 35px;
+}
+/* illustrations */
+
+.image_illustrationAdmin{
+    width: 100px;
+}
+
+
+
+
+
+/* edito */
+
+.container_articleEditoAdmin{
+    width: 50vw;
+}
+
+.image_editoAdmin{
+    width: 150px;
+}
+

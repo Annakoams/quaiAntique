@@ -49,12 +49,14 @@
     width: 100%;
     margin-top: 100px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    flex-wrap: wrap;
 
 }
 
 .illustration {
-    width: 15%;
+    width: 180px;
+    margin: 20px;
     box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
 }
@@ -125,6 +127,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    .img_couvertureHome {
+        width: 100vw;
+        height: 40vh;
+        object-fit: cover;
+    }
 
     .title_couvertureHome {
         background-color: rgba(0, 0, 0, 0.327);
@@ -148,11 +155,20 @@
         border: none;
     }
 
-    .illustration {
+    .container_illustration {
         width: 100%;
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    
+    }
+    
+    .illustration {
+        width: 180px;
+        margin: 20px;
         box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
-        padding: 25px;
     }
 
     /* edito */
@@ -188,6 +204,11 @@
 /* media mobile */
 
 @media only screen and (max-width: 600px) {
+    .img_couvertureHome {
+        width: 100vw;
+        height: 60vh;
+        object-fit: cover;
+    }
     .title_et_btn {
         position: absolute;
         display: flex;
@@ -223,6 +244,7 @@
     /* illustartions */
     .container_illustration {
         width: 100%;
+        padding: 25px;
         margin-top: 25px;
         display: flex;
         flex-direction: column;
@@ -235,7 +257,8 @@
         width: 100%;
         box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
-        padding: 25px;
+        padding: 15px;
+        margin: 0;
     }
 
     .title_illustrations {

@@ -6,6 +6,7 @@ const cors = require('cors');
 app.use(cors({
    origin: '*'
 }));
+
 app.use('/images/',express.static(path.join(__dirname,'/images/')))
 
 
@@ -42,6 +43,15 @@ app.get('/api/categories', async function (req, res) {
 
 app.get('/api/article/:value', async function (req, res) {
    const result = await db.getRow('articles', 'target', req.params.value );
+   res.json(result);
+});
+
+app.post('api/signup', async function (req, res) {
+   
+   res.json(result);
+});
+app.post('api/signin', async function (req, res) {
+   
    res.json(result);
 });
 

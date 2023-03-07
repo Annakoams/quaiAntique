@@ -7,9 +7,11 @@ import Menu from "./pages/Menu";
 import Reservation from "./pages/Reservation";
 import Connection from "./pages/Connection";
 import NoPage from "./pages/NoPage";
+import HomeAdmin from "./pages/admin/HomeAdmin.js"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.css'
-// fonts
+
 
 
 export default function App() {
@@ -22,9 +24,13 @@ export default function App() {
           <Route path="menu" element={<Menu/>} />
           <Route path="reservation" element={<Reservation/>} />
           <Route path="connection" element={<Connection />} />
+          <Route path="admin/HomeAdmin" element={<HomeAdmin/>}/>
           <Route path="*" element={<NoPage />} />
+ 
+        
         </Route>
       </Routes>
+
     </BrowserRouter>
   );
 }

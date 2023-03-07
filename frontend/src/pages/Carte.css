@@ -17,15 +17,9 @@
     line-height: 1.1em;
     padding: 25px;
 }
-
-
-
-
 .categories{
     padding: 70px;
 }
-
-
 .title_categories{
     text-align: center;
     padding-bottom: 10PX;
@@ -47,6 +41,27 @@
 }
 .plats{
     border-bottom: thin dotted black ;
+}
+@media only screen and (min-width: 600px) and (max-width: 768px){
+    .img_couvertureCarte{
+        height: 40vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+    .title_couvertureCarte{
+        background-color: rgba(0, 0, 0, 0.327);
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        font-family: Playfair Display;
+        font-size: 46px;
+        font-weight: 600;
+        line-height: 1.1em;
+        padding: 25px;
+    }
 }
 
 /* media query mobile */

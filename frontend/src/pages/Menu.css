@@ -41,6 +41,29 @@
 .explication_asterisque{
     padding-top: 35px;
 }
+@media only screen and (min-width: 600px) and (max-width: 768px){
+    .img_couvertureMenu{
+        width: 100vw;
+        height: 40vh;
+        object-fit: cover;
+    }
+    
+    
+    .title_couvertureMenu{
+        background-color: rgba(0, 0, 0, 0.327);
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        font-family: Playfair Display;
+        font-size: 46px;
+        font-weight: 600;
+        line-height: 1.1em;
+        padding: 25px;
+    }
+}
 
 
 @media only screen and (max-width: 600px){

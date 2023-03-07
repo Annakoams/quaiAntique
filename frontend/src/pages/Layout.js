@@ -85,6 +85,9 @@ const Layout = () => {
                 <li className="item nav-item" key="reservation">
                   <Link to="/reservation">Reservation</Link>
                 </li>
+                <li className="item nav-item" key="reservation">
+                  <Link to="admin/HomeAdmin">HomeAdmin</Link>
+                </li>
                 <li >
                 <button className="btn_connectez"
                   onClick={toggleNavSmallScreen} key="connection">
