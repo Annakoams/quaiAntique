@@ -85,8 +85,14 @@ const Layout = () => {
                 <li className="item nav-item" key="reservation">
                   <Link to="/reservation">Reservation</Link>
                 </li>
-                <li className="item nav-item" key="reservation">
+                <li className="item nav-item" key="homeAdmin">
                   <Link to="admin/HomeAdmin">HomeAdmin</Link>
+                </li>
+                <li className="item nav-item" key="carteAdmin">
+                  <Link to="admin/CarteAdmin">Carte</Link>
+                </li>
+                <li className="item nav-item" key="menuAdmin">
+                  <Link to="admin/MenuAdmin">Menu</Link>
                 </li>
                 <li >
                 <button className="btn_connectez"

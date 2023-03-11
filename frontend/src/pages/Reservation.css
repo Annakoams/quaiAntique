@@ -46,3 +46,11 @@
     border: 1px solid #838282;
     margin: 5px;
 }
+@media screen and (max-width:600px){
+    .container_hour {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+}

@@ -23,38 +23,17 @@ h1 {
     width: 250px;
 }
 label{
+    margin-bottom: 5px;
+}
+.eye{
+    margin-top: 5px;
+    position: absolute;
+    margin-left: -25px;
+}
+label{
     margin-bottom: 2px;
 }
-#toggle{
-    position: absolute;
-    top: 27px;
-    right: 77px;
-    width: 25px;
-    height: 25px;
-    background-color: #b9c2c2;;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#toggle::before{
-    content: "\f06e";
-    font-family: fontAwesome;
-}
-#toggle.hide::before{
-    content: '\f070';
-}
-.liste_vaidationCheck{
-    background-color:#b9c2c2;
-    padding: 10px;
-    text-align: start;
-    list-style:inside;
-    font-size: 0.85em;
-}
-.liste_vaidationCheck li.valid{
-    color: red;
-}
+
 
 .container_allergies{
     padding-top: 25px;
@@ -90,6 +69,19 @@ input {
     color: #f1f1f1;
     cursor: pointer;
     border: none;
+}
+.btn_form:hover{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    background-color: #334c81;
+    width: 170px;
+    height: 45px;
+    color: #f1f1f1;
+    cursor: pointer;
+    border: none;
+    transform: scale(0.95);
+    transition: 0.9s ease-out;
 }
 
 
