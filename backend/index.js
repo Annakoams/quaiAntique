@@ -4,7 +4,45 @@ var db = require('./db');
 var path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const secretKey = "qsfszdgzrgdvssdvderfgertg";
+var jwt = require('jsonwebtoken');
+
+
+
+const userToken = (user)=>{
+   var token = jwt.sign({ user }, secretKey, {
+      expiresIn: 86400 * 365 // 24 hours
+  });
+
+console.log(token);
+
+  return token;
+};
+
+const headerToken= ( req )=>{
+
+   try {
+   if( req.headers &&  (  "Authorization" in req.headers  ))
+   {
+     var token = req.headers["Authorization"].split(" ").pop();  
+     var  { user } = jwt.verify(token, secretKey);
+     return user;
+   }
+   else
+   {
+      return null;
+   }
+   }
+   catch(err){
+      console.log(err);
+      return null;
+   }
+}
+
+
+
+
 
 async function hashPassword(plaintextPassword) {
        const hash = await bcrypt.hash(plaintextPassword, 10);
@@ -42,21 +80,25 @@ app.get('/api/illustrations', async function (req, res) {
    const result = await db.getTable('illustrations');
    res.json(result);
 });
+app.get('/api/schedules', async function (req, res) {
+   const result = await db.getTable('schedules');
+   console.log('schedules')
+   res.json(result);
+});
 
 app.get('/api/menus', async function (req, res) {
    const result = await db.getTable('menus');
-   console.log('menus')
    res.json(result);
 });
 
 app.get('/api/plats', async function (req, res) {
    const result = await db.getTable('plats');
-   console.log('plats')
+
    res.json(result);
 });
 app.get('/api/categories', async function (req, res) {
    const result = await db.getTable('categories');
-   console.log('categories')
+   
    res.json(result);
 });
 
@@ -66,9 +108,7 @@ app.get('/api/article/:value', async function (req, res) {
 });
 
 app.post('/api/signup', async function (req, res) {
-   
    const body = req.body
-   console.log(body)
    const hash =  await  hashPassword(body.password);
    body.password = hash
    const result= await db.insertRow('users',body);
@@ -77,37 +117,36 @@ app.post('/api/signup', async function (req, res) {
 });
 
 
+app.post('/api/signin', async function (req, res) {
 
-   
-   app.post('/api/signin', async function (req, res) {
-    
-        const body = req.body;
-        console.log(body);
-    
-        // Récupère l'utilisateur depuis la base de données
-        const user = await db.getRow('users', 'email', body.email);
-        if (!user) {
-          return res.status(401).json({
-            message: 'Authentification échouée',
-          });
-        }
-    
-        // Vérifie si le mot de passe correspond
-        const isPasswordValid = await comparePassword(body.password, user.password);
-        if (!isPasswordValid) {
-          return res.status(401).json({
-            message: 'Authentification échouée',
-          });
-        }
-    
-        res.status(200).json({
-         
-          message: 'Authentification réussie',
-        });
-    
-      
-    });
-    
+   const body = req.body;
+
+
+   // Récupère l'utilisateur depuis la base de données
+   const user = await db.getRow('users', 'email', body.email);
+   if (!user) {
+      return res.status(401).json({
+         message: 'Authentification échouée',
+      });
+   }
+
+   // Vérifie si le mot de passe correspond
+   const isPasswordValid = await comparePassword(body.password, user.password);
+   if (!isPasswordValid) {
+      return res.status(401).json({
+         message: 'Authentification échouée',
+      });
+   }
+
+   res.status(200).json({
+      success : true,
+      token : userToken(user),
+      user : user,
+      message: 'Authentification réussie',
+   });
+
+});
+
 
 app.use('/', express.static('../frontend/build/'));
 

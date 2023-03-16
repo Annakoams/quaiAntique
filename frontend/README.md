@@ -85,3 +85,6 @@ npm install --save @fortawesome/react-fontawesome
 
 
 npm install bcrypt
+
+
+npm install jsonwebtoken

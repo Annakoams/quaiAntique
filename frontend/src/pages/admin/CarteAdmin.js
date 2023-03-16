@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { getData, url_server } from "../../lib/api"
-import btnAjouter from "../images/btn_ajouter.jpg"
-import btnModifier from "../images/btn_modifier.jpeg"
-import btnTrash from "../images/trash_icons.png"
-import btnEnregistre from "../images/btn_enregisre.png"
-import btnFlecheHaut from "../images/btn_FlecheHaut.png"
-import btnFlecheBas from "../images/btn_FlecheBas.png"
+import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp } from "../../lib/icons";
 import "../admin/CarteAdmin.css";
 
 
@@ -16,6 +11,10 @@ const Carte = () => {
     const [categories, setCategories] = useState([]);
     const [carte, setCarte] = useState({})
 
+
+    const EditCarte = (carte) => {
+        alert("Edit Carte")
+    }
 
     useEffect(() => {
 
@@ -46,58 +45,83 @@ const Carte = () => {
 
     return (
         <>
-            <p className="intitule">COUVERTURE</p>
-            <section className="section_Carte">
-                <div className="container_couvertureCarte ">
-                    <div className="container_image">
-                        <img className="img_couvertureCarte" src={url_server + carte.url_picture} />
-                        <div className="btn_modifierImage">
-                            <img className="btnAjouter" src={btnAjouter} />
-                            <p className="textModifier_image">modifier l'image</p>
+            <p className="intituleAdmin">COUVERTURE</p>
+            <section className="section_CarteAdmin">
+                <div className="container_couvertureCarteAdmin ">
+                    <div className="container_imageAdmin">
+                        <img className="img_couvertureCarteAdmin" src={url_server + carte.url_picture} />
+                        <div className="btn_modifierImageAdmin">
+                            <IconAdd />
+                            <p className="textModifier_imageAdmin">modifier l'image</p>
                         </div>
                     </div>
                     <div className="title_couvertureCarteAdmin">{carte.title}</div>
                     <div className="navigation_Admin">
-                        <img className="btnModifier" src={btnModifier} />
-                        <img className="btnTrash" src={btnTrash} />
-                        <img className="btnEnregiste" src={btnEnregistre} />
-                        <div className="navigation_fleches">
-                            <img className="btnFleche" src={btnFlecheHaut} />
-                            <img className="btnFleche" src={btnFlecheBas} />
+                        < input className="input_active" type="text" />
+                        <IconEdit onClick={() => EditCarte(carte)} />
+                        <IconDelete onClick={() => EditCarte(carte)} />
+                        <IconSave onClick={() => EditCarte(carte)} />
+                        <div className="navigation_flechesAdmin">
+                            <IconUp />
+                            <IconDown />
                         </div>
                     </div>
 
                 </div>
 
             </section>
-            <p className="intitule">PLATS</p>
+            <p className="intituleAdmin">PLATS</p>
             <section className="section_Admin">
                 {categories.map(item => (
-                    <div className="categories_admin" key={item.categorie_id}>
-                        <h2 className="title_categories">{item.name}</h2>
+                    <div className="categories_adminAdmin" key={item.categorie_id}>
+                        <h2 className="title_categoriesAdmin">{item.name}</h2>
                         {plats
                             .filter(plat => plat.categorie_id == item.categorie_id)
                             .map(plat => (
 
                                 <div className="platsAdmin" key={plat.id}>
-                                    <div className="content_title">
-                                        <div className="title_plats">{plat.name}</div>
-                                        <div className="content_plats">{plat.description}</div>
+                                    <div className="content_titleAdmin">
+                                        <div className="title_platsAdmin">{plat.name}</div>
+                                        <div className="content_platsAdmin">{plat.description}</div>
                                     </div>
-                                    <div className="prix_plats">{plat.price + '€'}</div>
+                                    <div className="prix_platsAdmin">{plat.price + '€'}</div>
                                     <div className="navigation_Admin">
-                                        <img className="btnModifier" src={btnModifier} />
-                                        <img className="btnTrash" src={btnTrash} />
-                                        <img className="btnEnregiste" src={btnEnregistre} />
-                                        <div className="navigation_fleches">
-                                            <img className="btnFleche" src={btnFlecheHaut} />
-                                            <img className="btnFleche" src={btnFlecheBas} />
+                                     < input className="input_active" type="text" />
+                                        <IconEdit onClick={() => EditCarte(carte)} />
+                                        <IconDelete onClick={() => EditCarte(carte)} />
+                                        <IconSave onClick={() => EditCarte(carte)} />
+                                        <div className="navigation_flechesAdmin">
+                                            <IconUp  onClick={() => EditCarte(carte)}/>
+                                            <IconDown  onClick={() => EditCarte(carte)}/>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                     </div>
                 ))}
+
+            </section>
+            <p className="intituleAdmin">Ajouter une novelle Carte</p>
+            <section className="section_CarteAdmin">
+                <div >
+                    <div className="btn_ajouterImageAdmin">
+                        <IconAdd onClick={() => EditCarte(carte)}/>
+                        <p className="textAjouter_Admin">Ajouter un noveau Menu</p>
+                    </div>
+                    <div className="inputs_ajouterCarteAdmin">
+                        <input className="categorie"  placeholder="Choisiser le categorie" type="text" />
+                        <input className="title" placeholder="Saisissez le titre du plat le categorie"  type="text" />
+                        <input className="description" placeholder="Decrire le plats"  type="text" />
+                        <input className="prix" placeholder="Prix"  type="text" />
+                       
+                    </div>
+                    <div className="input_ajouterIconsAdmin">
+                    <IconSave  onClick={() => EditCarte(carte)} />
+                    </div>
+                    
+                </div>
+
+
 
             </section></>
     );

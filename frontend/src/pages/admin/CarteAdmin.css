@@ -1,18 +1,18 @@
-.intitule{
+.intituleAdmin{
     width: 80vw;
     margin: 10px auto 0 auto;
 }
-.section_Carte{
+.section_CarteAdmin{
     width: 80vw;
     margin: 25px auto 10px auto;
     border: 1px solid #676565;
     padding: 25px;
 }
-.container_couvertureCarte{
+.container_couvertureCarteAdmin{
     display: flex;
     justify-content: space-between;
 }
-.img_couvertureCarte{
+.img_couvertureCarteAdmin{
     width: 15vw;;
     height: 100px;
     object-fit: cover;
@@ -28,48 +28,48 @@
     width: 50vw;
     height: 100px;
 }
-.container_image{
+.container_imageAdmin{
     padding: 0 25px 0 0;
 }
-.btn_modifierImage{
+.btn_modifierImageAdmin{
     display: flex;
     justify-content: start;
     
 }
-.textModifier_image{
+.textModifier_imageAdmin{
     font-size: 12px;
     width: 100px;
     margin-top: auto;
     margin-bottom: auto;
 }
 /* navigation btns */
-.navigation_Admin{
+.navigation_AdminAdmin{
     display: flex;
     align-items: flex-end;
     padding: 0 0 0 25px;
 }
-.btnAjouter, .btnModifier, .btnTrash, .btnEnregiste{
+.btnAjouterAdmin, .btnModifierAdmin, .btnTrashAdmin, .btnEnregisteAdmin{
     width: 35px;
 }
-.navigation_fleches{
+.navigation_flechesAdmin{
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
-.btnFleche{
+.btnFlecheAdmin{
     padding: 10px;
 }
 /* plats */
-.categories_admin{
+.categories_adminAdmin{
     border-top-style: dotted;
     margin-top: 20px;
     padding-top: 20px;
     
 }
-.categories_admin:nth-child(1){
+.categories_adminAdmin:nth-child(1){
     border-top-style: none;
 }
-.title_categories{
+.title_categoriesAdmin{
     text-align: start;
     padding-bottom: 5px;
     font-size: 36px;
@@ -85,13 +85,13 @@
 .platsAdmin:nth-child(1){
     border-top:none;
 }
-.content_title{
+.content_titleAdmin{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 50vw;
 }
-.title_plats,.content_plats,.prix_plats{
+.title_platsAdmin,.content_platsAdmin,.prix_platsAdmin{
     border: 1px solid #676565;
     background-color: #6765650f;
     text-align: center;
@@ -100,19 +100,41 @@
     font-size: 1rem;
     text-align: start;
 }
-.title_plats{
+.title_platsAdmin{
     margin-bottom: 10px;
     height: 40px;
 }
-.content_plats{
+.content_platsAdmin{
     font-size: 0.8rem;
     height: 50px;
 }
-.prix_plats{
+.prix_platsAdmin{
     height: 40px;
 }
+/* tableu ajouter carte */
+.inputs_ajouterCarteAdmin{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.categorie,.title,.description,.prix{
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.description{
+height: 100px;
+}
+.prix{
+    width: 50px;
+    
+}
+.input_ajouterIconsAdmin{
+    text-align: end;
+}  
 @media screen and (max-width:600px) {
-    .intitule {
+    .intituleAdmin {
         width: 80vw;
         margin: 25px auto 0 auto;
     }
@@ -122,29 +144,29 @@
         border: 1px solid #676565;
         padding: 25px;
     }
-    .categories_admin {
+    .categories_adminAdmin {
         border-top-style: dotted;
        padding: 20px;
        margin: 0;
     }
-    .title_categories{
+    .title_categoriesAdmin{
         text-align: center;
         padding-bottom: 5px;
         font-size: 36px;
         font-weight: 400;
         
     }
-    .container_couvertureCarte{
+    .container_couvertureCarteAdmin{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .img_couvertureCarte{
+    .img_couvertureCarteAdmin{
         width: 50vw;;
         height: 100px;
         object-fit: cover;
     }
-    .btn_modifierImage {
+    .btn_modifierImageAdmin {
         display: flex;
         justify-content: center;
     }
@@ -159,7 +181,7 @@
         width: 60vw;
         height: 60px;
     }
-    .container_image{
+    .container_imageAdmin{
         padding: 0 0 0 0;
     }
     .platsAdmin {
@@ -169,22 +191,22 @@
         border-top: 1px solid;
         padding: 20px 0 20px 0;
     }
-    .content_title {
+    .content_titleAdmin {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         width: 70vw;
     }
-    .title_plats {
+    .title_platsAdmin {
         margin-bottom: 10px;
         font-size: 0.8rem;
         height: 60px;
     }
-    .content_plats {
+    .content_platsAdmin {
         font-size: 0.6rem;
         height: 70px;
     }
-    .prix_plats {
+    .prix_platsAdmin {
         margin-top: 10px;
         height: 40px;
     

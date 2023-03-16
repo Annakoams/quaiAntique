@@ -48,6 +48,10 @@ nav {
     cursor: pointer;
 
 }
+.mode_Admin{
+    border: 1px solid;
+    padding: 5px 10px;
+}
 
 .btn_connectez {
     position: absolute;
@@ -93,7 +97,27 @@ nav {
     text-align: center;
 }
 
+.name_user{
+    color: white;
+    text-decoration: underline;
+}
 
+ /* schedules */
+ .tableau_horaires{
+    display: flex;
+    justify-content: center;
+ }   
+
+.jours{
+    width: 100px;
+    padding: 10px;
+}
+.horaires_OpenClose{
+    padding: 10px;
+}
+.nb_clients{
+    display: none;
+}
 
 
 
@@ -151,6 +175,8 @@ nav {
         border: none;
     }
 
+
+    /* schedules */
 }
 /* media mobila */
 @media screen and (max-width:980px){

@@ -4,8 +4,11 @@ import './Connection.css'
 import  * as fa  from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { postData } from '../lib/api';
+import { useNavigate } from 'react-router-dom';
 
-function Connection() {
+function Connection({setUser}) {
+const navigate = useNavigate();
+
   const [msgEmailError, setMsgEmailError] = useState("");
   const [msgPasswordError, setMsgPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false)
@@ -103,6 +106,17 @@ function Connection() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const result = await postData('signin',{email,password});
+
+if(  result.token)
+{
+    // Stockage du token dans localStorage
+     localStorage.setItem("token",result.token)
+     localStorage.setItem("user", JSON.stringify(result.user) )
+     setUser(result.user);
+     navigate("/" );
+}
+    
+
 
   }
 

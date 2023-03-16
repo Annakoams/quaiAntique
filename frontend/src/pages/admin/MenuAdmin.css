@@ -1,18 +1,18 @@
-.intitule{
+.intituleAdmin{
     width: 80vw;
     margin: 10px auto 0 auto;
 }
-.section_Menu{
+.section_MenuAdmin{
     width: 80vw;
     margin: 25px auto 10px auto;
     border: 1px solid #676565;
     padding: 25px;
 }
-.container_couvertureMenu{
+.container_couvertureMenuAdmin{
     display: flex;
     justify-content: space-between;
 }
-.img_couvertureMenu{
+.img_couvertureMenuAdmin{
     width: 15vw;;
     height: 100px;
     object-fit: cover;
@@ -27,19 +27,35 @@
     width: 50vw;
     height: 100px;
 }
-.container_image{
+.container_imageAdmin{
     padding: 0 25px 0 0;
 }
-.btn_modifierImage{
+.btn_modifierImageAdmin {
     display: flex;
     justify-content: start;
     
 }
-.textModifier_image{
+.btn_ajouterImageAdmin{
+    display: flex;
+    justify-content: center;
+}
+.textAjouter_Admin{
+    font-size: 12px;
+    width:150px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.textModifier_imageAdmin{
     font-size: 12px;
     width: 100px;
     margin-top: auto;
     margin-bottom: auto;
+}
+.input_active{
+    
+    width: 25px;
+    height: 25px;
+    margin:5px;
 }
 /* navigation btns */
 .navigation_Admin{
@@ -47,17 +63,13 @@
     align-items: flex-end;
     padding: 0 0 0 25px;
 }
-.btnAjouter, .btnModifier, .btnTrash, .btnEnregiste{
-    width: 35px;
-}
-.navigation_fleches{
+
+.navigation_flechesAdmin{
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
-.btnFleche{
-    padding: 10px;
-}
+
 
 /* menu */
 .menuAdmin{
@@ -69,13 +81,13 @@
 .menuAdmin:nth-child(1){
     border-top:none;
 }
-.content_title{
+.content_titleAdmin{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: 50vw;
 }
-.title_menu,.content_menu,.price_menu{
+.title_menuAdmin,.content_menuAdmin,.price_menuAdmin{
     border: 1px solid #676565;
     background-color: #6765650f;
     text-align: center;
@@ -84,23 +96,46 @@
     font-size: 1rem;
     text-align: start;
 }
-.title_menu{
+.title_menuAdmin{
     margin-bottom: 10px;
     height: 40px;
 }
-.content_menu{
+.content_menuAdmin{
     font-size: 0.8rem;
     height: 50px;
 }
-.price_menu{
+.price_menuAdmin{
     height: 40px;
 }
+/* tableu ajouter menu */
+.inputs_ajouterMenuAdmin{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.categorie,.title,.description,.prix{
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.description{
+height: 100px;
+}
+.prix{
+    width: 50px;
+    
+}
+.input_ajouterIconsAdmin{
+    text-align: end;
+}   
+
 @media screen and (max-width:600px) {
-    .intitule {
+    .intituleAdmin {
         width: 80vw;
         margin: 25px auto 0 auto;
     }
-    .section_Menu {
+    .section_MenuAdmin {
         width: 90vw;
         margin: 5px auto 10px auto;
         border: 1px solid #676565;
@@ -109,22 +144,22 @@
 
 
 
-    .container_couvertureMenu{
+    .container_couvertureMenuAdmin{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .container_image{
+    .container_imageAdmin{
         padding: 0 0 0 0;
     }
 
-    .img_couvertureMenu{
+    .img_couvertureMenuAdmin{
         width: 50vw;;
         height: 100px;
         object-fit: cover;
     }
-    .btn_modifierImage {
+    .btn_modifierImageAdmin {
         display: flex;
         justify-content: center;
     }
@@ -147,22 +182,22 @@
         border-top: 1px solid;
         padding: 20px 0 20px 0;
     }
-    .content_title {
+    .content_titleAdmin {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         width: 70vw;
     }
-    .title_menu {
+    .title_menuAdmin {
         margin-bottom: 10px;
         font-size: 0.8rem;
         height: 60px;
     }
-    .content_menu {
+    .content_menuAdmin {
         font-size: 0.6rem;
         height: 70px;
     }
-    .price_menu {
+    .price_menuAdmin {
         margin-top: 10px;
         height: 40px;
     
