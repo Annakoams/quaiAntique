@@ -4,6 +4,7 @@ var db = require('./db');
 var path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const formidable = require('formidable');
 const bcrypt = require("bcrypt");
 const secretKey = "qsfszdgzrgdvssdvderfgertg";
 var jwt = require('jsonwebtoken');
@@ -82,7 +83,7 @@ app.get('/api/illustrations', async function (req, res) {
 });
 app.get('/api/schedules', async function (req, res) {
    const result = await db.getTable('schedules');
-   console.log('schedules')
+  
    res.json(result);
 });
 
@@ -93,6 +94,7 @@ app.get('/api/menus', async function (req, res) {
 
 app.get('/api/plats', async function (req, res) {
    const result = await db.getTable('plats');
+   console.log('plats')
 
    res.json(result);
 });
@@ -106,6 +108,53 @@ app.get('/api/article/:value', async function (req, res) {
    const result = await db.getRow('articles', 'target', req.params.value );
    res.json(result);
 });
+
+
+
+const uploadImage = async(req, table,field_picture,field_id,id )=>{
+
+
+   let form = new formidable.IncomingForm();
+
+   //Process the file upload in Node
+   form.parse(req, function (error, fields, file) {
+     console.log(file);
+     console.log(error);
+     if(!file || !file.picture ) return;
+ 
+     let filepath = file.picture.filepath;
+     let newpath = 'images/';
+      let filename= "f" +  Date.now() +"-" + file.picture.originalFilename;
+     newpath +=filename ;
+     console.log(filepath,newpath)
+ 
+     //Copy the uploaded file to a custom folder
+     fs.rename(filepath, newpath,  async function () {
+    var obj = {};
+     obj [field_picture] =filename;
+     var resultUpload = await db.updateRow(table, obj , field_id, id);
+     });
+   });
+ 
+
+} 
+
+app.put('/api/article/:value', async function (req, res) {
+
+
+console.log("put article", req.params.value, req.body );
+
+// UPLOAD 
+
+await uploadImage(  req,'articles','url_picture','target',req.params.value);
+//
+   const result = await db.updateRow('articles', {  title : req.body.title } , "target", req.params.value);
+   res.json(result);
+
+});
+
+
+
 
 app.post('/api/signup', async function (req, res) {
    const body = req.body

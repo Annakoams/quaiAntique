@@ -73,9 +73,36 @@ const insertRow = async(table,obj) =>{
   return result;
 }
 
+const updateRow = async(table,obj,field_id,id) =>{
+  let fields = Object.keys(obj)
+  const setvalues = Object.entries(obj).map(keyvalue =>   keyvalue[0]+   "='" + (keyvalue[1] +"").replaceAll("'","''") + "'")
+  let select = new Promise((resolve, reject) => {
+    var con = mysql.createConnection(config);
+
+        con.connect(function(err) {
+          if (err) throw err;
+          const sql = "UPDATE `"+table+"` SET  "+setvalues.join(",")+ "  WHERE  " + field_id + " = " + "'" + id + "'";
+          console.log(sql)
+          con.query( sql, function (err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+            con.destroy();
+            resolve(result);
+        
+          });
+        });
+  })
+  var result = await select;
+  return result;
+}
+
+
+
+
 exports.getTable = getTable
 exports.getRow = getRow
 exports.insertRow = insertRow
+exports.updateRow = updateRow
 
 // INSERT INTO `articles` (`article_id`, `url_picture`, `title`, `content`, `target`) VALUES (NULL, 'x', ' Une  cuisine Gastronomique savoyarde\r\nmoderne et généreuse.', NULL, 'acceuil');
 

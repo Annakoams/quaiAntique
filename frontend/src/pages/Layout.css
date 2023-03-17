@@ -48,18 +48,14 @@ nav {
     cursor: pointer;
 
 }
-.mode_Admin{
-    border: 1px solid;
-    padding: 5px 10px;
-}
+
 
 .btn_connectez {
     position: absolute;
     border-radius: 3px;
     box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
     background-color: #BC9800;
-    width: 150px;
-    height: 44px;
+
     right: 20px;
     top: 30px;
     color: #f1f1f1;
@@ -154,10 +150,8 @@ nav {
         display: flex;
         justify-content: space-around;
         font-size: large;
-        height: 100px;
-        width: 100%;
-        
-        line-height: 50px;
+        padding : 20px;
+   
     }
 
     .btn_connectez {
@@ -165,8 +159,8 @@ nav {
         border-radius: 10px;
         box-shadow: 0px 0px 23px 0px rgba(0,0,0,0.75);
         background-color: #BC9800;
-        width: 150px;
-        height: 44px;
+      /*  width: 150px;
+        height: 44px;*/
         right: 20px;
         top: 30px;
         color: #f1f1f1;

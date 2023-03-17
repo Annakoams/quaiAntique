@@ -50,7 +50,7 @@ const Carte = () => {
             {plats
               .filter(plat => plat.categorie_id == item.categorie_id)
               .map(plat => (
-                <ul className="plats" key={plat.id}>
+                <ul className="plats" key={plat.plat_id}>
                   <div className="prix_title">
                     <li className="title_plats">{plat.name}</li>
                     <li className="prix_plats">{plat.price + '€'}</li>

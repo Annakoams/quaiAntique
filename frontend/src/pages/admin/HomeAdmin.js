@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
-import { getData, url_server } from "../../lib/api"
-import btnAjouter from "../images/btn_ajouter.jpg"
-import btnModifier from "../images/btn_modifier.jpeg"
-import btnTrash from "../images/trash_icons.png"
-import btnEnregistre from "../images/btn_enregisre.png"
-import btnFlecheHaut from "../images/btn_FlecheHaut.png"
-import btnFlecheBas from "../images/btn_FlecheBas.png"
-import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp } from "../../lib/icons";
+import { getData, url_server,putData  } from "../../lib/api"
+import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp,IconCancel } from "../../lib/icons";
 import "../admin/HomeAdmin.css";
 
 const HomeAdmin = () => {
@@ -15,11 +9,21 @@ const HomeAdmin = () => {
   const [cover, setCover] = useState({})
   const [illustrations, setIllustrations] = useState([])
   const [carte, setCarte] = useState({})
+  const [blnEditCover, setBlnEditCover] = useState(false)
 
-  const EditCarte = (carte) => {
-    alert("Edit Carte")
+
+const EditCarte = () => {}
+
+  const saveCover = async () => {
+
+  cover.title = document.getElementById('cover_title').value;
+
+   await  putData('article/acceuil',{ title : cover.title } )
+
+    setCover({...cover });
+    setBlnEditCover(false);
+
   }
-
 
   useEffect(() => {
 
@@ -42,17 +46,29 @@ const HomeAdmin = () => {
         <div className="container_image">
           <img className="img_couvertureAdmin " src={url_server + cover.url_picture} />
           <div className="btn_modifierImage">
-            <IconAdd onClick={() => EditCarte(carte)} />
-            <p className="textModifier_image">modifier l'image</p>
+            {
+            blnEditCover ? 
+            <><IconAdd onClick={() => EditCarte(carte)} /> <p className="textModifier_image">modifier l'image</p> </> : <></>
+            }
+           
           </div>
         </div>
-        <div className=" title_couvertureAdmin ">{cover.title}
+         {
+          blnEditCover ?
+          <textarea className=" title_couvertureAdmin "  defaultValue={cover.title}  id="cover_title"  >
+          </textarea> :
+         <div className=" title_couvertureAdmin ">{cover.title}
         </div>
+
+         }
         <div className="navigation_Admin">
-          < input className="input_active" type="text" />
-          <IconEdit onClick={() => EditCarte(carte)} />
-          <IconDelete onClick={() => EditCarte(carte)} />
-          <IconSave onClick={() => EditCarte(carte)} />
+        
+        { !blnEditCover ?   <IconEdit onClick={() => setBlnEditCover(true)} />
+          :
+          <><IconSave onClick={() => saveCover(carte)} />
+          <IconCancel className="text-danger" onClick={() => setBlnEditCover(false)} />
+          </>
+}
           <div className="navigation_flechesAdmin">
             <IconUp />
             <IconDown />

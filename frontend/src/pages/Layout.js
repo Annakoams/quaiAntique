@@ -111,8 +111,8 @@ const Layout = ({ user, setUser }) => {
 
 
                   <>
-                  <div className="">
-                  <li className="item nav-item" key="home">
+                  
+                    <li className="item nav-item" key="home">
                     <Link to="/">Home</Link>
                     </li>
                     <li className="item nav-item" key="carte">
@@ -124,13 +124,14 @@ const Layout = ({ user, setUser }) => {
                     <li className="item nav-item" key="reservation">
                       <Link to="/reservation">Reservation</Link>
                     </li>
-                    </div>
+                  
 
                     {
                       user && user.user_type === "admin" ?
-                        <div>
-                          <li className="item nav-item mode_Admin" key="Admin" onClick={() => setAdminMode(true)} >
-                            Mode Admin
+                        <div className="">
+                          <li  >
+                          <button className="bg-white p-2 text-dark "
+                        key="home" onClick={() => setAdminMode(true)}>Mode Normal</button>
                           </li>
                         </div> : <></>}
                   </>
@@ -148,8 +149,11 @@ const Layout = ({ user, setUser }) => {
                       <Link to="admin/MenuAdmin">Menu</Link>
                     </li>
                     <div>
-                      <li className="item nav-item mode_Admin" key="Admin" onClick={() => setAdminMode(false)} >
-                        Mode Normal
+                      <li >
+                        
+                        <button className="bg-white p-2 text-dark "
+                        key="home" onClick={() => setAdminMode(false)}>Mode Admin</button>
+
                       </li>
                     </div>
 
@@ -161,9 +165,9 @@ const Layout = ({ user, setUser }) => {
                 <li >
                   {user ?
                     <>
-                      <span className="name_user" > {user.name}   </span>
-                      <button className="btn_connectez"
-                        key="home" onClick={logOut}>Deconnection</button>
+                     
+                      <button className="btn_connectez p-2"
+                        key="home" onClick={logOut}>Deconnection, {user.name }</button>
 
                     </> :
                     <button className="btn_connectez"

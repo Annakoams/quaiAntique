@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getData, url_server } from "../../lib/api"
-import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp } from "../../lib/icons";
+import { getData, url_server, putData } from "../../lib/api"
+import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp, IconCancel } from "../../lib/icons";
 import "../admin/CarteAdmin.css";
 
 
@@ -10,10 +10,20 @@ const Carte = () => {
     const [plats, setPlats] = useState([]);
     const [categories, setCategories] = useState([]);
     const [carte, setCarte] = useState({})
+    const [blnEditCarte, setBlnEditCarte] = useState(false)
+    
 
 
-    const EditCarte = (carte) => {
-        alert("Edit Carte")
+    const EditCarte = () => {}
+
+        const saveCarte = async () => {
+
+            carte.title = document.getElementById('carte_title').value;
+          
+             await  putData('article/carte',{ title : carte.title } )
+          
+              setCarte({...carte });
+              setBlnEditCarte(false);
     }
 
     useEffect(() => {
@@ -51,16 +61,30 @@ const Carte = () => {
                     <div className="container_imageAdmin">
                         <img className="img_couvertureCarteAdmin" src={url_server + carte.url_picture} />
                         <div className="btn_modifierImageAdmin">
-                            <IconAdd />
-                            <p className="textModifier_imageAdmin">modifier l'image</p>
+                            {
+                                blnEditCarte ?
+                                <><IconAdd onClick={() => EditCarte(carte)} />
+                            <p className="textModifier_imageAdmin">modifier l'image</p> </> : <></>
+
+                            }
                         </div>
                     </div>
-                    <div className="title_couvertureCarteAdmin">{carte.title}</div>
+                    { blnEditCarte ?
+                    <textarea className="title_couvertureCarteAdmin"  defaultValue={carte.title}  id="carte_title">
+
+                    </textarea> :
+                    <div className="title_couvertureCarteAdmin">{carte.title}
+                        </div>
+                        }
+
                     <div className="navigation_Admin">
-                        < input className="input_active" type="text" />
-                        <IconEdit onClick={() => EditCarte(carte)} />
-                        <IconDelete onClick={() => EditCarte(carte)} />
-                        <IconSave onClick={() => EditCarte(carte)} />
+                    { !blnEditCarte ?   <IconEdit onClick={() => setBlnEditCarte(true)} />
+          :
+          <><IconSave onClick={() => saveCarte(carte)} />
+          <IconCancel className="text-danger" onClick={() => setBlnEditCarte(false)} />
+          </>
+}
+                
                         <div className="navigation_flechesAdmin">
                             <IconUp />
                             <IconDown />
@@ -86,7 +110,7 @@ const Carte = () => {
                                     </div>
                                     <div className="prix_platsAdmin">{plat.price + '€'}</div>
                                     <div className="navigation_Admin">
-                                     < input className="input_active" type="text" />
+                                    <input className="input_active" type="checkbox" checked={item.active == 1}/>
                                         <IconEdit onClick={() => EditCarte(carte)} />
                                         <IconDelete onClick={() => EditCarte(carte)} />
                                         <IconSave onClick={() => EditCarte(carte)} />
