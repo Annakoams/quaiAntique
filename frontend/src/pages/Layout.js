@@ -130,8 +130,8 @@ const Layout = ({ user, setUser }) => {
                       user && user.user_type === "admin" ?
                         <div className="">
                           <li  >
-                          <button className="bg-white p-2 text-dark "
-                        key="home" onClick={() => setAdminMode(true)}>Mode Normal</button>
+                          <button className="rounded bg-light p-2 text-dark mb-sm-3 mb-lg-0  "
+                        key="home" onClick={() => setAdminMode(true)}>Mode Admin</button>
                           </li>
                         </div> : <></>}
                   </>
@@ -151,8 +151,8 @@ const Layout = ({ user, setUser }) => {
                     <div>
                       <li >
                         
-                        <button className="bg-white p-2 text-dark "
-                        key="home" onClick={() => setAdminMode(false)}>Mode Admin</button>
+                        <button className="rounded bg-light p-2 text-dark mb-sm-3 mb-lg-0 "
+                        key="home" onClick={() => setAdminMode(false)}>Mode Normal</button>
 
                       </li>
                     </div>
@@ -170,7 +170,7 @@ const Layout = ({ user, setUser }) => {
                         key="home" onClick={logOut}>Deconnection, {user.name }</button>
 
                     </> :
-                    <button className="btn_connectez"
+                    <button className="btn_connectezModeNormal"
                       onClick={toggleNavSmallScreen} key="connection">
                       <Link to="/connection">Connectez-vous</Link>
                     </button>

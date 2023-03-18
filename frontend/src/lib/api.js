@@ -33,6 +33,24 @@ async function putData(params, data) {
 }
 exports.putData = putData;
 
+
+
+async function postFormData(params, formData) {
+    const response = await fetch(url_server + 'api/' + params, 
+    {
+        method:'POST',
+        headers:{
+      //   'Content-Type':'multipart/form-data'
+            },
+        body:formData
+    }
+    );
+    const result = await response.json();
+    console.log(result);
+    return result;
+}
+exports.postFormData = postFormData;
+
 async function getData(params) {
     const response = await fetch(url_server + 'api/' + params);
     const result = await response.json();

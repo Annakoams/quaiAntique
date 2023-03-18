@@ -4,7 +4,7 @@ import './Menu.css'
 
 const Menu = () => {
 
-  const [menus, setMenu] = useState([]);
+  const [menus, setMenus] = useState([]);
   const [cover, setCover] = useState({})
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Menu = () => {
 
     getData('menus')
       .then(result => {
-        setMenu(result);
+        setMenus(result);
         
       })
       .catch(error => {
@@ -37,7 +37,7 @@ const Menu = () => {
 
     <section className="container_menu">
         {menus.map(item => (
-          <ul className="menu" key={item.id}>
+          <ul className="menu" key={item.menu_id}>
             <li className="title_prix">
               <h1 className="title_menu">{item.name}</h1>
               <div className="price_menu">{item.price + "€"}</div>

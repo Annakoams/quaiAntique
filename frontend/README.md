@@ -91,3 +91,6 @@ npm install bcrypt
 
 
 npm install jsonwebtoken
+
+
+npm install multer

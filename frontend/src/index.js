@@ -47,8 +47,6 @@ setUser(_user)
           <Route path="menu" element={<Menu/>} />
           <Route path="reservation" element={<Reservation/>} />
           <Route path="connection" element={<Connection setUser={setUser}  />} />
-
-    
           <Route path="admin/HomeAdmin" element={<HomeAdmin/>}/>
           <Route path="admin/CarteAdmin" element={<CarteAdmin/>}/>
           <Route path="admin/MenuAdmin" element={<MenuAdmin/>}/>
