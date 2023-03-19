@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 18 mars 2023 à 11:37
+-- Généré le : dim. 19 mars 2023 à 17:51
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.0.25
 
@@ -40,7 +40,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`article_id`, `url_picture`, `title`, `content`, `target`) VALUES
-(1, 'images/image_acceuil1.jpg\r\n', ' Une cuisine Gastronomique savoyarde\nmoderne et généreuse.', NULL, 'acceuil'),
+(1, 'images/image_acceuil1.jpg\r\n', ' Une haute cuisine Gastronomique savoyarde\nmoderne et généreuse.', NULL, 'acceuil'),
 (2, 'images/cuisine_savoyarde.jpg', 'Cuisine savoyarde qui fait reve ! ', 'La cuisine savoyarde naît et se développe à l’époque médiévale, alors que la Famille de Savoie démontre sa grandeur, entre autre, au travers de son art de vivre.\r\n\r\nC’est principalement la situation géographique des Pays de Savoie qui explique la diversité de sa gastronomie. D’abord point de passage d’Est en Ouest, le Duché de Savoie bénéficie des épices d’Orient telles que le poivre, la muscade, le clou de girofle et le safran. Ensuite, à cheval sur les Alpes, son développement culinaire est principalement composé de pâtes, de polenta, mais aussi des pommes de terre et des fromages savoyards. Enfin, les recettes savoyardes se sont diversifiées et enrichies grâce à la charcuterie, les fruits secs, les noix, les pruneaux, ou encore les raisins secs.', 'edito'),
 (3, 'images\\image_carte.jpg', 'NOTRE CARTE', NULL, 'carte'),
 (4, 'images/image_menu.jpg', 'NOS MENUS', NULL, 'menu');
@@ -172,10 +172,19 @@ INSERT INTO `plats` (`plat_id`, `name`, `description`, `categorie_id`, `price`, 
 CREATE TABLE `reservations` (
   `reservation_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `name` varchar(60) DEFAULT NULL,
   `nb_guests` int(11) NOT NULL,
-  `reservation_date` date NOT NULL,
+  `reservation_date` datetime NOT NULL,
   `allergies` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reservations`
+--
+
+INSERT INTO `reservations` (`reservation_id`, `user_id`, `email`, `name`, `nb_guests`, `reservation_date`, `allergies`) VALUES
+(7, 1, 'annanis06@hotmail.com', 'anna', 2, '2023-03-19 11:00:00', 'ble , gluten');
 
 -- --------------------------------------------------------
 
@@ -219,8 +228,8 @@ CREATE TABLE `users` (
   `user_type` text DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` text NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `nb_guests` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `nb_guests` int(11) DEFAULT NULL,
   `allergies` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -229,8 +238,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_type`, `email`, `password`, `name`, `nb_guests`, `allergies`) VALUES
-(1, 'Administrator', '', '', '', 0, NULL),
-(14, 'admin', 'annanis06@hotmail.com', '$2b$10$TexkiosUxXdin7SrbrZBNuHhM2npjReps9CXUvl0DrEYc5wD5V9da', 'anna', 0, 'ble , gluten');
+(1, 'admin', 'annanis06@hotmail.com', '$2b$10$TexkiosUxXdin7SrbrZBNuHhM2npjReps9CXUvl0DrEYc5wD5V9da', 'anna', 0, 'ble , gluten');
 
 --
 -- Index pour les tables déchargées
@@ -338,7 +346,7 @@ ALTER TABLE `plats`
 -- AUTO_INCREMENT pour la table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `reservation_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `reservation_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `schedules`

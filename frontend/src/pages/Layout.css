@@ -8,12 +8,6 @@
 
 }
 
-.container_navbar.fixed {
-    background-color: aliceblue;
-    transition: .3s ease-in-out;
-}
-
-
 .container-liste {
     display: flex;
     width: 100%;

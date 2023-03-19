@@ -142,6 +142,14 @@ app.post('/api/article/:value', upload.single('picture'), async function (req, r
    }
 
 });
+app.post('/api/resa', async function (req, res) {
+   const body = req.body
+  
+   const result = await db.insertRow('reservations', body);
+   res.json('OK');
+
+});  
+
 
 app.post('/api/signup', async function (req, res) {
    const body = req.body

@@ -46,6 +46,25 @@
     border: 1px solid #838282;
     margin: 5px;
 }
+.containeur_btn{
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    align-items: center;
+}
+
+
+.btn_reservez {
+    border-radius: 3px;
+    background-color: #334c81;
+    width: 180px;
+    height: 50px;
+    color: #f1f1f1;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    
+}
 @media screen and (max-width:600px){
     .container_hour {
         display: flex;

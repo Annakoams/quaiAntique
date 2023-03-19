@@ -1,40 +1,35 @@
 import React, {useState} from 'react';
 import { IconEdit } from '../lib/icons';
-function Uploadfile({  setSelectedFile,setPreviewPicture}){
 
-	const [isFilePicked, setIsFilePicked] = useState(false);
+function Uploadfile({ setSelectedFile, setPreviewPicture }) {
 
-	const changeHandler = (event) => {
-		const file = event.target.files[0];
-		setSelectedFile(file);
-		
-		// Preview de l'image 
-	
-		const reader = new FileReader();
-		reader.onloadend = () => {
-		  const base64String = reader.result
-		  //   .replace('data:', '')
-		  //   .replace(/^.+,/, '');
-		  console.log(base64String)
-		  setPreviewPicture(base64String);
-		};
-		reader.readAsDataURL(file);
-	};
+  const [isFilePicked, setIsFilePicked] = useState(false); // Hook d'état pour vérifier si un fichier a été sélectionné
 
-	const selectCoverPicture = (selectfile) => {
-		// Selection du fichier de l'image à sauvegarder 
-	
-	
-	  }
-	
+  const changeHandler = (event) => { // Fonction qui est appelée lorsqu'un fichier est sélectionné
+    const file = event.target.files[0]; // Obtient le fichier sélectionné
+    setSelectedFile(file); // Envoie le fichier sélectionné à la fonction parent qui le manipule
 
-	return(
-   <div   className="m-[-20px]"  >
-			<input className='d-none' type="file" name="file" onChange={changeHandler} />
-			<IconEdit onClick={(e) =>{ e.target.previousSibling.click()   } } /> 
-		</div>
-	)
+    // Prévisualisation de l'image
+    const reader = new FileReader(); // Crée un objet FileReader pour lire le contenu du fichier
+    reader.onloadend = () => { // La fonction qui est appelée lorsque la lecture du fichier est terminée
+      const base64String = reader.result // Obtient le contenu du fichier sous forme d'une chaîne de caractères codée en base64
+      setPreviewPicture(base64String); // Envoie la chaîne de caractères codée en base64 à la fonction parent pour la prévisualisation de l'image
+    };
+    reader.readAsDataURL(file); // Lit le contenu du fichier en tant que chaîne de caractères codée en base64
+  };
+
+  const selectCoverPicture = (selectfile) => {
+    // Fonction qui gère la sélection d'une image de couverture
+  }
+
+  return (
+    <div className="m-[-20px]">
+      <input className='d-none' type="file" name="file" onChange={changeHandler} /> {/* Input pour sélectionner un fichier */}
+      <IconEdit onClick={(e) =>{ e.target.previousSibling.click() } } /> {/* Bouton d'édition qui déclenche la sélection de fichier */}
+    </div>
+  );
 }
 
-
 export default Uploadfile;
+
+

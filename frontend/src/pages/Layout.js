@@ -105,13 +105,8 @@ const Layout = ({ user, setUser }) => {
           {toggleMenu && (
             <div className="container-liste">
               <ul className="liste">
-                {/* Ajout d'un "key" unique pour chaque élément de la liste */}
-
                 {!adminMode ?
-
-
                   <>
-                  
                     <li className="item nav-item" key="home">
                     <Link to="/">Home</Link>
                     </li>
@@ -124,8 +119,6 @@ const Layout = ({ user, setUser }) => {
                     <li className="item nav-item" key="reservation">
                       <Link to="/reservation">Reservation</Link>
                     </li>
-                  
-
                     {
                       user && user.user_type === "admin" ?
                         <div className="">
@@ -135,10 +128,7 @@ const Layout = ({ user, setUser }) => {
                           </li>
                         </div> : <></>}
                   </>
-
                   :
-
-
                   <> <li className="item nav-item" key="homeAdmin">
                     <Link to="admin/HomeAdmin">Home</Link>
                   </li>
@@ -150,25 +140,17 @@ const Layout = ({ user, setUser }) => {
                     </li>
                     <div>
                       <li >
-                        
                         <button className="rounded bg-light p-2 text-dark mb-sm-3 mb-lg-0 "
                         key="home" onClick={() => setAdminMode(false)}>Mode Normal</button>
-
                       </li>
                     </div>
-
                   </>
-
                 }
-
-
                 <li >
                   {user ?
                     <>
-                     
                       <button className="btn_connectez p-2"
                         key="home" onClick={logOut}>Deconnection, {user.name }</button>
-
                     </> :
                     <button className="btn_connectezModeNormal"
                       onClick={toggleNavSmallScreen} key="connection">
@@ -180,14 +162,12 @@ const Layout = ({ user, setUser }) => {
 
             </div>
           )}
-
           {/* Bouton hamburger */}
           {isMobile && <div>
             <Hamburger className="hamburger" color="#BC9800" direction="right" toggled={toggleMenu} toggle={setToggleMenu} />
           </div>}
         </div>
       </nav>
-
       <Outlet />
       <footer>
         <div className="container_footer">
@@ -199,7 +179,6 @@ const Layout = ({ user, setUser }) => {
             {schedules.filter(s => {
               if (horaires) return true;
               return daysweek[s.day] == (new Date()).getDay()
-
             }).map(schedule => {
               return (
                 <div className="horaires_ouverture" key={schedule.schedule_id}>
@@ -214,12 +193,9 @@ const Layout = ({ user, setUser }) => {
                 </div>
               );
             })}
-
             <li>Tel : 01 48 54 72 25</li>
           </ul>
-
         </div>
-
       </footer>
     </>
   );

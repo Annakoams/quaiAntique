@@ -208,7 +208,7 @@ if(  result.token)
 export default Connection;
 
 
-// Formé d'un minimum de 8 caractères. Ajustez-le en modifiant {8,}
+// Formé d'un minimum de 8 caractères. Ajustez-le en modifiant {6,}
 
 // Au moins une lettre majuscule. Vous pouvez supprimer cette condition en supprimant (?=.* ?[A-Z])
 
@@ -216,4 +216,3 @@ export default Connection;
 
 // Au moins un chiffre. Vous pouvez supprimer cette condition en supprimant (?=.* ?[0-9])
 
-// Au moins un caractère spécial, Vous pouvez supprimer cette condition en supprimant (?=.* ?[#?!@$%^&*-])
