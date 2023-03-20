@@ -14,9 +14,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  useState,useEffect } from "react";
 import './index.css'
+
+ 
+
 export default function App() {
 const [user, setUser ]= useState(null);
-
+ 
 
 useEffect(()=>{
 var stringUser = localStorage.getItem("user");

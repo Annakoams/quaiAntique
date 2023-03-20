@@ -16,6 +16,9 @@
 .inputs {
     width: 350px!important;
 }
+.input_resa{
+    display: none;
+}
 
 /* hours */
 .container_resa{
@@ -57,7 +60,7 @@
 .btn_reservez {
     border-radius: 3px;
     background-color: #334c81;
-    width: 180px;
+    /* width: 180px; */
     height: 50px;
     color: #f1f1f1;
     cursor: pointer;

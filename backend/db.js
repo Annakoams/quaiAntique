@@ -2,10 +2,10 @@ var mysql = require('mysql');
 
 // Configuration de la base de données
 const config = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "db_quai_antique"
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER ,
+  password:  process.env.MYSQL_PASSWORD,
+  database:  process.env.MYSQL_DATABASE
 }
 
 // Fonction pour récupérer une seule ligne
@@ -29,7 +29,7 @@ const getRow = async(table, field, value) => {
   var result = await select;
   return result;
 }
-
+ 
 // Fonction pour récupérer toutes les lignes d'une table
 const getTable = async(table) => {
   let select = new Promise((resolve, reject) => {

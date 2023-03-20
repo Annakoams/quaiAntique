@@ -14,8 +14,8 @@ const Reservation = () => {
   const date = (new Date());
 
   const choix_couverts =Array.from({length: 12}, (v, k) => k+1); 
-  const choix_morning_hours =[ "12:00", "12:15", "12:30" ]; 
-  const choix_evening_hours =[ "19:00", "19:15", "19:30" ]; 
+  const choix_morning_hours =[ "12:00", "12:15", "12:30", "12:45","13:00","13:15", "13:30", "13:45","14:00" ]; 
+  const choix_evening_hours =[ "19:00", "19:15", "19:30","19:45","20:00","20:15", "20:30", "20:45","24:00","20:15", "20:30", "20:45" ]; 
   const choix_dates = Array.from({length: 12}, (v, k) => {
 
       return  ( new Date( Date.now() + 24*60*60*1000*k  )).toDateString();
@@ -31,6 +31,7 @@ const Reservation = () => {
   const [email, setEmail] = useState(null);
   const [name, setName] = useState(null);
   const [allergies, setAllergies] = useState(null);
+  
 
   useEffect(() => {
     /** verification si le visiteur est connecté */
@@ -44,6 +45,8 @@ const Reservation = () => {
       setEmail(user.email);
       setAllergies(user.allergies);
       setNbGuests(user.ng_guests);
+      
+      
     }
 
 
@@ -67,9 +70,18 @@ if( !reservationHours) {
   return;
 }
 if( !email) {
-  setMsgErrorResa("Vous devez saisir votre nom");
+  setMsgErrorResa("Vous devez saisir votre adresse email");
   return;
 }
+if( !reservationHours) {
+  setMsgErrorResa("Vous devez saisir un horaire");
+  return;
+}
+if( !nbGuests) {
+  setNbGuests("Vous devez saisir nombre d'accompagniateurs");
+  return;
+}
+
 if (!verificationEmail(email)) {
   setMsgErrorResa('Saisissez une adresse mail valide');
   return;
@@ -140,13 +152,13 @@ navigate("/")
         </div>
       </div>
       <div className='containeur_btn'>
-      <label htmlFor="name">Veuillez saisir votre nom</label>
-        <input className='input' type="text" id="name" name="name"  defaultValue={name}  onChange={(e)=>{setName(e.target.value)   }}  />
-        <label htmlFor="email">Veuillez saisir votre adresse email</label>
-        <input className='input' type="text" id="email" name="email"  defaultValue={email}   onChange={(e)=>{setEmail(e.target.value)   }}  />
+      
+        <input className='input_resa' type="text" id="name" name="name"  defaultValue={name}  onChange={(e)=>{setName(e.target.value)   }}  />
+      
+        <input className='input_resa' type="text" id="email" name="email"  defaultValue={email}   onChange={(e)=>{setEmail(e.target.value)   }}  />
         <h6 className='text-danger '>{msgErrorResa} </h6>
-     {  user_id ? <button  type="button" className="btn_reservez" onClick={ValideReservation}>Reserver votre table</button> :
-     <button  type="button"  className="btn_reservez"><Link to="/connection">Connectez-vous </Link> </button>
+     {  user_id  ? <button  type="button" className="btn_reservez p-2 px-4" onClick={ValideReservation}>{name}, Reservez votre table</button> :
+     <button  type="button"  className="btn_reservez p-2 px-4"><Link to="/connection">Connectez-vous </Link> </button>
      }
       </div>
 

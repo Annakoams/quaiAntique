@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require('fs')
 var express = require('express');
 var app = express();
@@ -189,9 +190,18 @@ app.post('/api/signin', async function (req, res) {
 });
 
 
-app.use('/', express.static('../frontend/build/'));
 
-var server = app.listen(8081, function () {
+app.use('/images/', express.static(path.join(__dirname, '/images/')));
+//app.use(['/','/menu','/connection'], express.static('../frontend/build/'));
+app.get(['/','/menu','/carte','/reservation', '/connection','/admin/HomeAdmin','/admin/CarteAdmin','/admin/MenuAdmin'], function (request, reponse) {
+   console.log(request.originalUrl);
+   reponse.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
+   app.use(express.static(path.join(__dirname, '/../frontend/build/')));
+ 
+ });
+
+
+var server = app.listen(process.env.SERVER_PORT , function () {
    var host = server.address().address;
    var port = server.address().port;
 

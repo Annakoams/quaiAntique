@@ -99,7 +99,7 @@ const Layout = ({ user, setUser }) => {
     <>
       <nav>
         <div className="container_navbar">
-          <img className="logo" src={logo} alt="logo de quai d'antique" />
+        <Link to="/"><img className="logo" src={logo} alt="logo de quai d'antique" /></Link>
 
           {/* short circuit operator */}
           {toggleMenu && (
@@ -107,9 +107,7 @@ const Layout = ({ user, setUser }) => {
               <ul className="liste">
                 {!adminMode ?
                   <>
-                    <li className="item nav-item" key="home">
-                    <Link to="/">Home</Link>
-                    </li>
+
                     <li className="item nav-item" key="carte">
                       <Link to="/carte">Carte</Link>
                     </li>

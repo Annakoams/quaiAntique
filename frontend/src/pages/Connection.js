@@ -113,7 +113,7 @@ if(  result.token)
      localStorage.setItem("token",result.token)
      localStorage.setItem("user", JSON.stringify(result.user) )
      setUser(result.user);
-     navigate("/" );
+     navigate("/reservation" );
 }
     
 
@@ -179,8 +179,8 @@ if(  result.token)
       <div className='container_input'>
         <label htmlFor="password">Confirmer le mot de passe</label>
         <div className='flex flex-row'>
-        <input className='input' type={showPassword2 ? 'text' : "password2"} id="password2" name="password2" />
-        <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword2(!showPassword2)}} />
+        <input className='input' type={showPassword ? 'text' : "password"} id="password2" name="password2" />
+        {/* <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword2(!showPassword2)}} /> */}
         
         </div>
       </div>
