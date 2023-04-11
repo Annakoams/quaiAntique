@@ -1,3 +1,11 @@
+/* .fixed-nav{
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100px;
+} */
+
 .container_navbar {
     
     display: flex;

@@ -13,7 +13,11 @@ const HomeAdmin = () => {
   const [illustrations, setIllustrations] = useState([])
   const [schedules, setSchedules] = useState([]);
   const [carte, setCarte] = useState({})
+
+ const [blnEditIllustrations, setBlnEditIllustrations] = useState(null)
+ 
   const [blnEditSchedules, setBlnEditSchedules] = useState(false)
+
   const [blnEditCover, setBlnEditCover] = useState(false)
   const [coverPicture, setCoverPicture] = useState(null)
   const [coverFilePicture, setFileCoverPicture] = useState(null)
@@ -94,11 +98,24 @@ const saveShedules = async () => {
     setBlnEditSchedules(false);
   }
 
+// gestion des illustration
+  const toggleEditIllustration = (i) =>{
+    blnEditIllustrations[i]=!blnEditIllustrations[i];
+console.log(blnEditIllustrations)
+    setBlnEditIllustrations(blnEditIllustrations.map((el)=>el))
+  }
 // Cette fonction est appelée à l'initialisation de l'application et permet de récupérer les données nécessaires
 useEffect(() => {
     // On récupère les illustrations
     getData('illustrations').then((result) => {
       setIllustrations(result)
+      let blnArray = []
+      result.forEach(element => {
+        blnArray.push(false)
+        
+      });
+      console.log(blnArray);
+      setBlnEditIllustrations(blnArray);
     })
 
     getData('article/acceuil').then((result) => {
@@ -155,27 +172,30 @@ useEffect(() => {
     {/* boucle avec les tableau */}
     <p className="intitule">ILLUSTRATIONS</p>
     <section className="section_Admin" >
-      {illustrations.map(illustration => {
+      {illustrations.map((illustration,i) => {
         return (
           <div className="container_illustrationAdmin" key={illustration.illustration_id}>
             <div className="container_image">
               <img name="" className="image_illustrationAdmin" src={url_server + illustration.url_picture} />
+              { blnEditIllustrations[i] && 
               <div className="btn_modifierImage">
                 <IconAdd onClick={() => EditCarte(carte)} />
-                <p className="textModifier_image">modifier l'image</p>
-              </div>
+              </div>}
             </div>
             <div className="title_illustrationAdmin" >{illustration.title}
             </div>
             <div className="navigation_Admin">
-              <input className="input_active" type="checkbox" defaultChecked={illustration.active == 1} />
-              <IconEdit onClick={() => EditCarte(carte)} />
-              <IconDelete onClick={() => EditCarte(carte)} />
+              <input className="input_active" type="checkbox" disabled={!blnEditIllustrations[i]}  defaultChecked={illustration.active == 1} />
+              <IconEdit onClick={() => toggleEditIllustration(i)} />
+              {blnEditIllustrations[i] &&
+              <><IconDelete onClick={() => EditCarte(carte)} />
               <IconSave onClick={() => EditCarte(carte)} />
+              </>}
+             {blnEditIllustrations[i] &&
               <div className="navigation_flechesAdmin">
                 <IconUp />
                 <IconDown />
-              </div>
+              </div>}
             </div>
 
           </div>

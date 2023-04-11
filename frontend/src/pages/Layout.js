@@ -26,8 +26,6 @@ const Layout = ({ user, setUser }) => {
   const [toggleMenu, setToggleMenu] = useState((window.innerWidth > 980));
   const [largeur, setLargeur] = useState(window.innerWidth);
 
-
-
   // navbar fixe
   const setFixed = () => {
     if (window.scrollY >= 392) {
@@ -47,6 +45,14 @@ const Layout = ({ user, setUser }) => {
   }
 
   useEffect(() => {
+     // navbar fixe
+  const setFixed = () => {
+    if (window.pageYOffset >= 392) {
+      setFix(true);
+    } else {
+      setFix(false);
+    }
+  };
 
     getData('schedules').then((result) => {
       setSchedules(result)
@@ -58,11 +64,10 @@ const Layout = ({ user, setUser }) => {
       setToggleMenu(true);
       setIsMobile(false)
     }
-
-
+    
     window.addEventListener("scroll", setFixed);
     return () => {
-      window.removeEventListener("scroll", setFixed);
+    window.removeEventListener("scroll", setFixed);
     };
 
   }, [user]);
@@ -97,17 +102,16 @@ const Layout = ({ user, setUser }) => {
 
   return (
     <>
-      <nav>
+    {/* <nav className={`navbar ${fix ? 'fixed-nav' : ''}`}></nav> */}
+      <nav >
         <div className="container_navbar">
         <Link to="/"><img className="logo" src={logo} alt="logo de quai d'antique" /></Link>
-
           {/* short circuit operator */}
           {toggleMenu && (
             <div className="container-liste">
               <ul className="liste">
                 {!adminMode ?
                   <>
-
                     <li className="item nav-item" key="carte">
                       <Link to="/carte">Carte</Link>
                     </li>

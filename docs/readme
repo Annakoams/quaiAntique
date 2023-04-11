@@ -1,7 +1,7 @@
 Cher professeur,
 
 Pour que vous puissiez lire et modifier le projet restaurant Quai Antique sur votre ordinateur, il est nécessaire d'installer Node.js . 
-Une fois que Node.js est installé, vous pouvez récupérer le projet à partir de GitHub en utilisant Git.
+Une fois que Node.js est installé, vous pouvez récupérer le projet à partir de GitHub.
 Voici le liens: https://github.com/Annakoams/quaiAntique
 
 Je vous suggère de suivre les étapes suivantes pour récupérer le projet à partir de GitHub :
@@ -14,6 +14,8 @@ Entrez la commande "npm install". Cela va installer toutes les dépendances néc
 Vous pouvez maintenant exécuter votre projet en utilisant la commande "npm start".
 
 En suivant ces étapes, vous allez récupérer le projet restaurant à partir de GitHub et de l'exécuter sur votre ordinateur. N'hésitez pas à me contacter si vous avez des questions ou des préoccupations supplémentaires.
+
+Vous devriez configurer votre base de données avec le fichier .env
 
 création d’un administrateur pour le back-office:
 

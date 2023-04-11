@@ -6,7 +6,6 @@ var db = require('./db');
 var path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
 var multer = require('multer');
 var upload = multer({ dest: '../uploads/' });
 const bcrypt = require("bcrypt");
@@ -162,7 +161,6 @@ app.post('/api/signup', async function (req, res) {
 });
 
 app.post('/api/signin', async function (req, res) {
-
    const body = req.body;
    // Récupère l'utilisateur depuis la base de données
    const user = await db.getRow('users', 'email', body.email);
@@ -171,7 +169,6 @@ app.post('/api/signin', async function (req, res) {
          message: 'Authentification échouée',
       });
    }
-
    // Vérifie si le mot de passe correspond
    const isPasswordValid = await comparePassword(body.password, user.password);
    if (!isPasswordValid) {
@@ -179,7 +176,6 @@ app.post('/api/signin', async function (req, res) {
          message: 'Authentification échouée',
       });
    }
-
    res.status(200).json({
       success: true,
       token: userToken(user),
@@ -207,3 +203,18 @@ var server = app.listen(process.env.SERVER_PORT , function () {
 
    console.log("Example app listening at http://%s:%s", host, port);
 });
+
+// Ce code est un exemple de serveur Express en JavaScript. Il utilise des bibliothèques telles que dotenv, fs, multer, bcrypt, jsonwebtoken, cors et body-parser.
+
+// Le serveur expose des points d'accès API pour récupérer des données à partir d'une base de données et effectuer des opérations CRUD (Create, Read, Update, Delete) sur ces données. Les points d'accès incluent /api/articles, /api/illustrations, /api/schedules, /api/menus, /api/plats, /api/categories, et /api/article/:value.
+
+// Le serveur offre également des fonctionnalités d'authentification et d'inscription pour les utilisateurs. Les points d'accès /api/signup et /api/signin permettent à un utilisateur de créer un compte et de se connecter, respectivement.
+
+// Le serveur utilise également multer pour gérer le téléchargement de fichiers (images). Lorsqu'un utilisateur télécharge une image, le serveur la stocke localement et met à jour la base de données avec l'emplacement de l'image.
+
+// Enfin, le serveur sert des fichiers statiques tels que des images et des pages HTML via des points d'accès tels que /images/ et /,/menu,/carte,/reservation,/connection,/admin/HomeAdmin,/admin/CarteAdmin,/admin/MenuAdmin.
+
+
+
+
+

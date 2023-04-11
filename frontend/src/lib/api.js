@@ -17,9 +17,6 @@ async function postData(params, data) {
     return result;
 }
 
-// exportation de la fonction postData pour qu'elle soit disponible dans d'autres fichiers
-
-
 // fonction asynchrone pour envoyer une requête PUT à l'API
 async function putData(params, data) {
     const response = await fetch(url_server + 'api/' + params, 
@@ -35,9 +32,6 @@ async function putData(params, data) {
     console.log(result);
     return result;
 }
-
-// exportation de la fonction putData pour qu'elle soit disponible dans d'autres fichiers
-
 
 // fonction asynchrone pour envoyer une requête POST à l'API avec des données de formulaire
 async function postFormData(params, formData) {
@@ -55,9 +49,6 @@ async function postFormData(params, formData) {
     return result;
 }
 
-// exportation de la fonction postFormData pour qu'elle soit disponible dans d'autres fichiers
-
-
 // fonction asynchrone pour envoyer une requête GET à l'API
 async function getData(params) {
     const response = await fetch(url_server + 'api/' + params);
@@ -67,8 +58,9 @@ async function getData(params) {
 }
 
 // exportation de la fonction getData pour qu'elle soit disponible dans d'autres fichiers
-
-
+// exportation de la fonction postFormData pour qu'elle soit disponible dans d'autres fichiers
 // exportation de l'URL du serveur pour qu'elle soit disponible dans d'autres fichiers
+// exportation de la fonction putData pour qu'elle soit disponible dans d'autres fichiers
+// exportation de la fonction postData pour qu'elle soit disponible dans d'autres fichiers
 
 export  {getData,putData,url_server,postData,postFormData }

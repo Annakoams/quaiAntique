@@ -75,7 +75,7 @@ const insertRow = async(table,obj) =>{
   var result = await select;
   return result;
 }
-
+// permet de mettre à jour une ligne dans une table spécifiée de la base de données en utilisant les informations suivantes
 const updateRow = async(table,obj,field_id,id) =>{
   let fields = Object.keys(obj);
   // Transformation des valeurs de l'objet en chaînes de caractères formatées pour la requête SQL
@@ -110,6 +110,17 @@ exports.updateRow = updateRow
 // INSERT INTO `articles` (`article_id`, `url_picture`, `title`, `content`, `target`) VALUES (NULL, 'x', ' Une  cuisine Gastronomique savoyarde\r\nmoderne et généreuse.', NULL, 'acceuil');
 
 // UPDATE `articles` SET `url_picture` = 'images/image_acceuil.jpg' WHERE `articles`.`article_id` = 1;
+
+// Le code est écrit en JavaScript et utilise la bibliothèque MySQL pour se connecter et interagir avec une base de données MySQL. Il exporte quatre fonctions: getRow, getTable, insertRow et updateRow.
+
+// getRow : prend en entrée un nom de table, un nom de champ et une valeur de champ et renvoie la première ligne correspondante sous forme d'objet.
+// getTable : prend en entrée un nom de table et renvoie toutes les lignes correspondantes sous forme d'un tableau d'objets.
+// insertRow : prend en entrée un nom de table et un objet et insère une nouvelle ligne dans la table correspondante.
+// updateRow : prend en entrée un nom de table, un objet, un nom de champ id et une valeur d'id et met à jour la ligne correspondante.
+// La configuration de la base de données est stockée dans un objet nommé "config" qui contient les informations nécessaires pour établir une connexion avec la base de données. Les fonctions utilisent une promesse pour encapsuler les requêtes SQL et attendent la résolution de la promesse avant de renvoyer le résultat.
+
+// La méthode map() est utilisée pour formater les valeurs des champs de la requête SQL. La méthode replaceAll() est utilisée pour remplacer tous les caractères apostrophes simples par des apostrophes doubles dans les valeurs de champ pour éviter les erreurs de syntaxe SQL.
+
 
 
 // const setvalues = Object.entries(obj).map(keyvalue => keyvalue[0]+ "='" + (keyvalue[1] +"").replaceAll("'","''") + "'"); : transforme les valeurs de l'objet obj en chaînes de caractères formatées pour la requête SQL en utilisant la méthode map() qui applique la fonction keyvalue => ... sur chaque élément du tableau renvoyé par Object.entries(obj). La fonction retourne une chaîne de caractères sous la forme "nom_du_champ='valeur_du_champ'" qui sera utilisée dans la requête SQL.

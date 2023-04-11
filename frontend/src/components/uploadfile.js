@@ -21,13 +21,16 @@ function Uploadfile({ setSelectedFile, setPreviewPicture }) {
   const selectCoverPicture = (selectfile) => {
     // Fonction qui gère la sélection d'une image de couverture
   }
+  const id = "input" + Date.now();
 
   return (
     <div className="m-[-20px]">
-      <input className='d-none' type="file" name="file" onChange={changeHandler} /> {/* Input pour sélectionner un fichier */}
-      <IconEdit onClick={(e) =>{ e.target.previousSibling.click() } } /> {/* Bouton d'édition qui déclenche la sélection de fichier */}
+      <input id ={id} className='d-none' type="file" name="file" onChange={changeHandler} /> {/* Input pour sélectionner un fichier */}
+      <IconEdit onClick={(e) =>{ document.getElementById(id).click() } } /> {/* Bouton d'édition qui déclenche la sélection de fichier */}
     </div>
   );
+
+  
 }
 
 export default Uploadfile;

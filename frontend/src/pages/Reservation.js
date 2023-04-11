@@ -48,9 +48,6 @@ const Reservation = () => {
       
       
     }
-
-
-
   }, [])
 
   const verificationEmail = (email) => {
@@ -102,14 +99,7 @@ if(result=="OK") {
 }
 navigate("/")
 
-
-
 }
-
-
-
-
-
   return (
     <Form>
       <div className='container_inputsTitle'>
