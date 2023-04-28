@@ -27,13 +27,13 @@ const Layout = ({ user, setUser }) => {
   const [largeur, setLargeur] = useState(window.innerWidth);
 
   // navbar fixe
-  const setFixed = () => {
-    if (window.scrollY >= 392) {
-      setFix(true);
-    } else {
-      setFix(false);
-    }
-  };
+  // const setFixed = () => {
+  //   if (window.scrollY >= 392) {
+  //     setFix(true);
+  //   } else {
+  //     setFix(false);
+  //   }
+  // };
 
   const logOut = () => {
     localStorage.removeItem("user");
@@ -92,9 +92,7 @@ const Layout = ({ user, setUser }) => {
         setIsMobile(true)
       }
     };
-
     window.addEventListener("resize", changeWidth);
-
     return () => {
       window.removeEventListener("resize", changeWidth);
     };

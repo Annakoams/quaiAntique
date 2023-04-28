@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import './Connection.css'
-import  * as fa  from '@fortawesome/free-solid-svg-icons'
+import * as fa from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { postData } from '../lib/api';
 import { useNavigate } from 'react-router-dom';
 
-function Connection({setUser}) {
-const navigate = useNavigate();
+function Connection({ setUser }) {
+  const navigate = useNavigate();
 
   const [msgEmailError, setMsgEmailError] = useState("");
   const [msgPasswordError, setMsgPasswordError] = useState("");
@@ -21,53 +21,53 @@ const navigate = useNavigate();
   const [digitError, setDigitError] = useState(false)
   // const [specialError, setSpecialError] = useState(false)
 
-  const verificationPassword = (data)=>{
+  const verificationPassword = (data) => {
     const length = new RegExp('(?=.{6,})');
-    const upper =new RegExp('(?=.*[A-Z])');
-    const lower =new RegExp('(?=.*[a-z])');
-    const digit =new RegExp('(?=.*[0-9])');
-  
-  
+    const upper = new RegExp('(?=.*[A-Z])');
+    const lower = new RegExp('(?=.*[a-z])');
+    const digit = new RegExp('(?=.*[0-9])');
+
+
     let blnError = false;
 
-    if (length.test(data)){
-      setLengthError (false);
-    }else{
-      setLengthError (true);
-      blnError= true ;
+    if (length.test(data)) {
+      setLengthError(false);
+    } else {
+      setLengthError(true);
+      blnError = true;
     }
-  
-    if (upper.test(data)){
-      setUpperError (false);
-    }else{
-      setUpperError (true);
-      blnError= true ;
+
+    if (upper.test(data)) {
+      setUpperError(false);
+    } else {
+      setUpperError(true);
+      blnError = true;
     }
-  
-    if (lower.test(data)){
-      setLowerError (false);
-    }else{
-      setLowerError (true);
-      blnError= true ;
+
+    if (lower.test(data)) {
+      setLowerError(false);
+    } else {
+      setLowerError(true);
+      blnError = true;
     }
-  
-    if (digit.test(data)){
-      setDigitError (false);
-    }else{
-      setDigitError (true);
-      blnError= true ;
+
+    if (digit.test(data)) {
+      setDigitError(false);
+    } else {
+      setDigitError(true);
+      blnError = true;
     }
-  
+
     return blnError;
-  
+
   }
 
   const verificationEmail = (email) => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
-  
-  const signUp  = async() => {
+
+  const signUp = async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const password2 = document.getElementById('password2').value;
@@ -75,49 +75,41 @@ const navigate = useNavigate();
     const allergies2 = document.getElementById('allergies2').value;
     setMsgEmailError("");
     setMsgPasswordError("");
-
     if (!verificationEmail(email)) {
       setMsgEmailError('Saisissez une adresse mail valide');
       return;
     }
-
     if (verificationPassword(password)) {
       setMsgPasswordError('Saisissez un mot de passe valide');
       return;
     }
-
     if (password !== password2) {
       setMsgPasswordError('Les deux mots de passe doivent correspondre');
       return;
     }
-    // verification completer
-    const allergies= allergies1 + ", " +allergies2
-    const result = await postData('signup',{email,password,allergies});
-
-    if(result === 'OK'){
-      setInscriptionExist (true)
+    const allergies = allergies1 + ", " + allergies2
+    const result = await postData('signup', { email, password, allergies });
+    if (result === 'OK') {
+      setInscriptionExist(true);
+      
     }
-    else{
+    else {
       alert('inscription echoue');
     }
   };
 
-  const signIn = async () =>{
+  const signIn = async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const result = await postData('signin',{email,password});
+    const result = await postData('signin', { email, password });
 
-if(  result.token)
-{
-    // Stockage du token dans localStorage
-     localStorage.setItem("token",result.token)
-     localStorage.setItem("user", JSON.stringify(result.user) )
-     setUser(result.user);
-     navigate("/reservation" );
-}
-    
-
-
+    if (result.token) {
+      // Stockage du token dans localStorage
+      localStorage.setItem("token", result.token)
+      localStorage.setItem("user", JSON.stringify(result.user))
+      setUser(result.user);
+      navigate("/reservation");
+    }
   }
 
   const [inscriptionExist, setInscriptionExist] = useState(true);
@@ -134,11 +126,11 @@ if(  result.token)
       <div className='container_input'>
         <label htmlFor="password">Mot de passe</label>
         <div className='input_eye'>
-        <input className='input' type={showPassword ? 'text' : "password"} id="password" name="password" onKeyUp={(event)=>verificationPassword(event.target.value)} />
-        <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword(!showPassword)}} />
+          <input className='input' type={showPassword ? 'text' : "password"} id="password" name="password" onKeyUp={(event) => verificationPassword(event.target.value)} />
+          <FontAwesomeIcon className="eye" icon={fa.faEye} onClick={() => { setShowPassword(!showPassword) }} />
         </div>
         <h6 className='text-danger '>{msgPasswordError} </h6>
-       
+
       </div>
       <div>
         <button type="button" onClick={signIn} className='btn_form'>S’identifier</button>
@@ -162,28 +154,28 @@ if(  result.token)
         <label htmlFor="password">Mot de passe</label>
         {/* operation ternaire */}
         <div className='flex flex-row'>
-        <input className='input' type={showPassword ? 'text' : "password"} id="password" name="password" onKeyUp={(event)=>verificationPassword(event.target.value)} />
-        <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword(!showPassword)}} />
+          <input className='input' type={showPassword ? 'text' : "password"} id="password" name="password" onKeyUp={(event) => verificationPassword(event.target.value)} />
+          <FontAwesomeIcon className="eye" icon={fa.faEye} onClick={() => { setShowPassword(!showPassword) }} />
         </div>
 
         <h6 className='text-danger '>{msgPasswordError} </h6>
         <div className='validation'>
-        <ul className='liste_vaidationCheck text-danger' id="validation">
-          { lengthError && <li className='valid'>Minimum de 8 caractères</li>}
-          { upperError &&  <li className='valid'>Au moins une lettre majuscule</li>}
-          { lowerError &&  <li className='valid'>Au moins une lettre minuscule.</li>}
-          { digitError &&  <li className='valid'>Au moins un chiffre.</li>}
-          
-        </ul>
-      </div>
-      <div className='container_input'>
-        <label htmlFor="password">Confirmer le mot de passe</label>
-        <div className='flex flex-row'>
-        <input className='input' type={showPassword ? 'text' : "password"} id="password2" name="password2" />
-        {/* <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword2(!showPassword2)}} /> */}
-        
+          <ul className='liste_vaidationCheck text-danger' id="validation">
+            {lengthError && <li className='valid'>Minimum de 8 caractères</li>}
+            {upperError && <li className='valid'>Au moins une lettre majuscule</li>}
+            {lowerError && <li className='valid'>Au moins une lettre minuscule.</li>}
+            {digitError && <li className='valid'>Au moins un chiffre.</li>}
+
+          </ul>
         </div>
-      </div>
+        <div className='container_input'>
+          <label htmlFor="password">Confirmer le mot de passe</label>
+          <div className='flex flex-row'>
+            <input className='input' type={showPassword ? 'text' : "password"} id="password2" name="password2" />
+            {/* <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword2(!showPassword2)}} /> */}
+
+          </div>
+        </div>
 
 
       </div>

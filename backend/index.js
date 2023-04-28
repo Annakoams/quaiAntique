@@ -1,6 +1,6 @@
 require('dotenv').config();
 const fs = require('fs')
-var express = require('express');
+const express = require('express');
 var app = express();
 var db = require('./db');
 var path = require('path');
@@ -18,14 +18,11 @@ const userToken = (user) => {
    var token = jwt.sign({ user }, secretKey, {
       expiresIn: 86400 * 365 // 24 hours
    });
-
    console.log(token);
-
    return token;
 };
 
 const headerToken = (req) => {
-
    try {
       if (req.headers && ("Authorization" in req.headers)) {
          var token = req.headers["Authorization"].split(" ").pop();
@@ -95,7 +92,7 @@ app.get('/api/menus', async function (req, res) {
 
 app.get('/api/plats', async function (req, res) {
    const result = await db.getTable('plats');
-   console.log('plats')
+   
 
    res.json(result);
 });
@@ -110,27 +107,32 @@ app.get('/api/article/:value', async function (req, res) {
    res.json(result);
 });
 
+// //////////////////////////////////////delate
+app.delete('/api/illustrations/:id', async function (req, res) {
+   try {
+     const result = await db.deleteRow('illustrations', 'illustration_id', req.params.id);
+     res.json(result);
+   } catch (err) {
+     console.error(err);
+     res.status(500).json({ error: 'Internal server error' });
+   }
+ });
+
+// //////////////////////////////////////delate
 
 
 
 
 app.post('/api/article/:value', upload.single('picture'), async function (req, res) {
 
-
    console.log("put article", req.params.value, req.file, req.body);
-
-   // UPLOAD 
    try {
-
       var article = JSON.parse(req.body.article);
-
       if (req.file) {
          const ext = req.file.originalname.split('.').pop();
          article.url_picture = "images/" +  req.file.filename +"." + ext;
         fs.renameSync(req.file.path, "./" + article.url_picture);
       }
-      console.log(article);
-      //
        await db.updateRow('articles', article, "target", req.params.value);
       var article = await db.getRow('articles', 'target', req.params.value)
       res.json({article});
@@ -138,10 +140,114 @@ app.post('/api/article/:value', upload.single('picture'), async function (req, r
    catch (err) {
       //
       res.json({ err })
-
    }
-
 });
+
+
+app.post('/api/menus/:id', async function (req, res) {
+   console.log('mise a jour menus', req.body)
+   try {
+       var menu = req.body;
+       console.log(menu)
+       await db.updateRow('menus', menu, "menu_id", req.params.id);
+       var menu = await db.getRow('menus', 'menu_id', req.params.id)
+       res.json({menu});
+   }
+   catch (err) {
+       res.json({ err })
+   }
+});
+
+app.post('/api/plats/:id', async function (req, res) {
+   console.log('mise a jour plats', req.body)
+   try {
+       var plat = req.body;
+       console.log(plat)
+       await db.updateRow('plats', plat, "plat_id", req.params.id);
+       var plat = await db.getRow('plats', 'plat_id', req.params.id)
+       res.json({plat});
+   }
+   catch (err) {
+       res.json({ err })
+   }
+});
+
+app.post('/api/schedules/:id', async function (req, res) {
+   console.log('mise a jour schedules', req.body)
+   try {
+       var schedule = req.body;
+       
+       await db.updateRow('schedules', schedule, "schedule_id", req.params.id);
+       var schedule = await db.getRow('schedules', 'schedule_id', req.params.id)
+       res.json({schedule});
+   }
+   catch (err) {
+       res.json({ err })
+   }
+});
+
+
+app.get('/api/illustrations/swap/:position1/:position2', async function (req, res){
+
+const position1 = req.params.position1;
+const position2 = req.params.position2;
+
+console.log(position1,position2)
+
+res.json({})
+
+} )
+
+app.post('/api/illustrations/:id', upload.single('picture'), async function (req, res) {
+
+   console.log("put illustration", req.params.id, req.file, req.body);
+
+   // UPLOAD 
+   try {
+
+      var illustration = JSON.parse(req.body.illustration);
+
+      if (req.file) {
+         const ext = req.file.originalname.split('.').pop();
+         illustration.url_picture = "images/" +  req.file.filename +"." + ext;
+        fs.renameSync(req.file.path, "./" + illustration.url_picture);
+      }
+      
+      //
+       await db.updateRow('illustrations', illustration, "illustration_id", req.params.id);
+      var illustration = await db.getRow('illustrations', 'illustration_id', req.params.id)
+      res.json({illustration});
+ }
+   catch (err) {
+      //
+      res.json({ err })
+   }
+});
+app.post('/api/illustrations/', upload.single('picture'), async function (req, res) {
+
+   console.log("put illustration", req.params.id, req.file, req.body);
+
+   // UPLOAD 
+   try {
+
+      var illustration = JSON.parse(req.body.illustration);
+
+      if (req.file) {
+         const ext = req.file.originalname.split('.').pop();
+         illustration.url_picture = "images/" +  req.file.filename +"." + ext;
+        fs.renameSync(req.file.path, "./" + illustration.url_picture);
+      }
+      //
+      await db.insertRow('illustrations', illustration);
+      const result = await db.getTable('illustrations');
+      res.json(result);
+ }
+   catch (err) {
+      //
+      res.json({ err })
+   }
+});
+
 app.post('/api/resa', async function (req, res) {
    const body = req.body
   

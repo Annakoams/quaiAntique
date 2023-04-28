@@ -16,6 +16,16 @@ async function postData(params, data) {
     console.log(result);
     return result;
 }
+// function asynchrone pour envoyer une requette delate a l'api
+
+async function deleteData(params) {
+    const response = await fetch(url_server + 'api/' + params, {
+      method: 'DELETE'
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  }
 
 // fonction asynchrone pour envoyer une requête PUT à l'API
 async function putData(params, data) {
@@ -35,11 +45,11 @@ async function putData(params, data) {
 
 // fonction asynchrone pour envoyer une requête POST à l'API avec des données de formulaire
 async function postFormData(params, formData) {
-    const response = await fetch(url_server + 'api/' + params, 
+    const response = await fetch(url_server + 'api/' + params , 
     {
         method:'POST',
         headers:{
-      //   'Content-Type':'multipart/form-data'
+        // 'Content-Type':'multipart/form-data'
             },
         body:formData
     }
@@ -63,4 +73,4 @@ async function getData(params) {
 // exportation de la fonction putData pour qu'elle soit disponible dans d'autres fichiers
 // exportation de la fonction postData pour qu'elle soit disponible dans d'autres fichiers
 
-export  {getData,putData,url_server,postData,postFormData }
+export  {getData,putData,url_server,postData,postFormData, deleteData }

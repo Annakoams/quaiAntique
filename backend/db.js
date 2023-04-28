@@ -99,9 +99,29 @@ const updateRow = async(table,obj,field_id,id) =>{
   return result;
 }
 
+const deleteRow = async(table,field_id,id)=>{
+  let select = new Promise((resolve, reject) => {
+    var con = mysql.createConnection(config);
+    con.connect(function(err) {
+      if (err) throw err;
+      // Requête SQL pour mettre à jour une ligne dans la table spécifiée
+      const sql = "DELETE FROM "+table+ "  WHERE  " + field_id + " = " + "'" + id + "'";
+      console.log(sql);
+      con.query( sql, function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        con.destroy();
+        resolve(result);
+      });
+    });
+  })
+  var result = await select;
+  return result;
+}
 
 
 
+exports.deleteRow = deleteRow
 exports.getTable = getTable
 exports.getRow = getRow
 exports.insertRow = insertRow
