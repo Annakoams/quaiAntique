@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { postData, getData, url_server, putData, postFormData } from "../../lib/api";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import { postData, getData, url_server, postFormData } from "../../lib/api";
 import Uploadfile from "../../components/uploadfile";
 import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp, IconCancel } from "../../lib/icons";
 import "../admin/CarteAdmin.css";
@@ -81,8 +82,40 @@ const Carte = () => {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////
- 
-
+    const swapOrder = (index, decalage) => {
+        console.log('swapOrder', index, decalage)
+        getData('plats/swap/' + plats[index].position + '/' + (plats[index + decalage].position)).then((result) => {
+          result.sort((a, b) => {
+            return a.position > b.position ? 1 : -1
+          })
+          setPlats(result)
+          let blnArrayPlats = []
+          result.forEach(element => {
+            blnArrayPlats.push(false)
+          });
+          setBlnEdithPlats(blnArrayPlats);
+        }).catch(error => {
+          console.log("An error occurred while swapping plats:", error);
+        });
+      }
+// //////////////////////////////////////////////////////////////////////////////////////////
+const getPlats =() =>{
+    getData('plats').then((result )=> {
+        result.sort((a, b) => {
+            return a.position > b.position ? 1 : -1
+          });
+        setPlats(result);
+        let blnArrayPlats = []
+        result.forEach(element => {
+            blnArrayPlats.push(false)
+        })
+        console.log(blnArrayPlats);
+        setBlnEdithPlats(blnArrayPlats);
+    })
+    .catch(error => {
+        console.log("An error occurred while fetching menu data:", error);
+    });
+}
 
     useEffect(() => {
 
@@ -95,19 +128,8 @@ const Carte = () => {
                 console.log("An error occurred while fetching menu data:", error);
             });
 
-        getData('plats')
-            .then(result => {
-                setPlats(result);
-                let blnArrayPlats = []
-                result.forEach(element => {
-                    blnArrayPlats.push(false)
-                })
-                console.log(blnArrayPlats);
-                setBlnEdithPlats(blnArrayPlats);
-            })
-            .catch(error => {
-                console.log("An error occurred while fetching menu data:", error);
-            });
+        getPlats();
+
         getData('categories')
             .then(result => {
                 setCategories(result);
@@ -192,10 +214,15 @@ const Carte = () => {
                                                 <IconDelete />
                                             </>
                                         }
-                                        {blnEdithPlats[i] &&
+                                        {(blnEdithPlats[i] && plat.plat_id > 0 ) &&
                                             <div className="navigation_flechesAdmin">
-                                                <IconUp />
-                                                <IconDown />
+                                                {i +1 > 1 &&
+                                                    <IconUp onClick={() => swapOrder(i, -1)}/>
+                                                }
+                                                {i +1 < plats.length &&
+                                                    <IconDown onClick={() => swapOrder(i, 1)}/>
+                                                }
+                                                
                                             </div>
                                         }
                                     </div>

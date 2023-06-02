@@ -37,7 +37,8 @@ const getTable = async(table) => {
     con.connect(function(err) {
       if (err) throw err;
       // Requête pour récupérer toutes les lignes de la table souhaitée
-      con.query("SELECT * FROM " + table , function (err, result, fields) {
+      const sql = "SELECT * FROM " + table 
+      con.query(sql, function (err, result, fields) {
         if (err) throw err;
         console.log(result);
         con.destroy();

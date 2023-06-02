@@ -1,16 +1,16 @@
 require('dotenv').config();
 const fs = require('fs')
 const express = require('express');
-var app = express();
-var db = require('./db');
-var path = require('path');
+const app = express();
+const db = require('./db');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-var multer = require('multer');
-var upload = multer({ dest: '../uploads/' });
+const multer = require('multer');
+const upload = multer({ dest: '../uploads/' });
 const bcrypt = require("bcrypt");
 const secretKey = "qsfszdgzrgdvssdvderfgertg";
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
 
@@ -62,6 +62,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors({
    origin: '*'
 }));
+
 
 app.use('/images/', express.static(path.join(__dirname, '/images/')))
 
@@ -185,7 +186,16 @@ app.post('/api/schedules/:id', async function (req, res) {
        res.json({ err })
    }
 });
+app.get('/api/plats/swap/:position1/:position2', async function (req, res){
 
+   const position1 = req.params.position1;
+   const position2 = req.params.position2;
+   
+   console.log(position1,position2)
+   
+   res.json({})
+   
+   } )
 
 app.get('/api/illustrations/swap/:position1/:position2', async function (req, res){
 
@@ -199,51 +209,38 @@ res.json({})
 } )
 
 app.post('/api/illustrations/:id', upload.single('picture'), async function (req, res) {
-
    console.log("put illustration", req.params.id, req.file, req.body);
-
-   // UPLOAD 
    try {
-
       var illustration = JSON.parse(req.body.illustration);
-
       if (req.file) {
          const ext = req.file.originalname.split('.').pop();
          illustration.url_picture = "images/" +  req.file.filename +"." + ext;
         fs.renameSync(req.file.path, "./" + illustration.url_picture);
       }
-      
-      //
+
        await db.updateRow('illustrations', illustration, "illustration_id", req.params.id);
       var illustration = await db.getRow('illustrations', 'illustration_id', req.params.id)
       res.json({illustration});
  }
    catch (err) {
-      //
       res.json({ err })
    }
 });
+
 app.post('/api/illustrations/', upload.single('picture'), async function (req, res) {
-
    console.log("put illustration", req.params.id, req.file, req.body);
-
-   // UPLOAD 
    try {
-
       var illustration = JSON.parse(req.body.illustration);
-
       if (req.file) {
          const ext = req.file.originalname.split('.').pop();
          illustration.url_picture = "images/" +  req.file.filename +"." + ext;
         fs.renameSync(req.file.path, "./" + illustration.url_picture);
       }
-      //
       await db.insertRow('illustrations', illustration);
       const result = await db.getTable('illustrations');
       res.json(result);
  }
    catch (err) {
-      //
       res.json({ err })
    }
 });
@@ -319,6 +316,8 @@ var server = app.listen(process.env.SERVER_PORT , function () {
 // Le serveur utilise également multer pour gérer le téléchargement de fichiers (images). Lorsqu'un utilisateur télécharge une image, le serveur la stocke localement et met à jour la base de données avec l'emplacement de l'image.
 
 // Enfin, le serveur sert des fichiers statiques tels que des images et des pages HTML via des points d'accès tels que /images/ et /,/menu,/carte,/reservation,/connection,/admin/HomeAdmin,/admin/CarteAdmin,/admin/MenuAdmin.
+
+
 
 
 

@@ -33,7 +33,7 @@
 }
 .btn_modifierImageAdmin{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     
 }
 .textModifier_imageAdmin{
@@ -70,7 +70,7 @@
     border-top-style: none;
 }
 .title_categoriesAdmin{
-    text-align: start;
+    text-align: flex-start;
     padding-bottom: 5px;
     font-size: 36px;
     font-weight: 400;
@@ -98,7 +98,7 @@
     padding: 5px;
     margin: 0 10px 0 10px;
     font-size: 0.8rem;
-    text-align: start;
+    text-align: flex-start;
 }
 .title_platsAdmin{
     margin-bottom: 10px;

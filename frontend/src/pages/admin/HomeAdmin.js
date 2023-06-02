@@ -49,7 +49,7 @@ const HomeAdmin = () => {
     formData.append('article', JSON.stringify({ title: cover.title }));
 
     // Envoyer la requête POST avec les données
-    var result = await postFormData('article/acceuil', formData);
+  const result = await postFormData('article/acceuil', formData);
     if (result && result.article) setCover(result.article);
 
     // Réinitialiser l'état
@@ -60,7 +60,7 @@ const HomeAdmin = () => {
   //////////////////////////////////////////////////////////////////////////////////
 
   const newIllustration = async () => {
-    var illustration = {
+    const illustration = {
       illustration_id: 0,
       url_picture: "images/empty.png",
       title: "",
@@ -72,7 +72,7 @@ const HomeAdmin = () => {
     setIllustrationsFilePicture([...illustrationsFilePicture, null]);
     setIllustrationsPreviewPicture([...illustrationsPreviewPicture, null]);
   }
-
+  
   const handelDeleteIllustration = async (index) => {
     if (!window.confirm('est vous sur de vouloir suprimer cette illustration?')) return
     try {
@@ -96,10 +96,10 @@ const HomeAdmin = () => {
   // gestion des illustration
   const toggleEditIllustration = (i) => {
     if (illustrations[i].illustration_id === 0) {
-      setBlnEditIllustrations(blnEditIllustrations.filter((o, index) => index != i))
-      setIllustrations(illustrations.filter((o, index) => index != i))
-      setIllustrationsFilePicture(illustrationsFilePicture.filter((o, index) => index != i))
-      setIllustrationsPreviewPicture(illustrationsPreviewPicture.filter((o, index) => index != i))
+      setBlnEditIllustrations(blnEditIllustrations.filter((o, index) => index !== i))
+      setIllustrations(illustrations.filter((o, index) => index !== i))
+      setIllustrationsFilePicture(illustrationsFilePicture.filter((o, index) => index !== i))
+      setIllustrationsPreviewPicture(illustrationsPreviewPicture.filter((o, index) => index !== i))
       return
     }
     blnEditIllustrations[i] = !blnEditIllustrations[i];
@@ -167,22 +167,15 @@ const HomeAdmin = () => {
 
   // Enregistrer les modifications apportées à schedules
   const saveSchedules = async (index) => {
-    // On récupère les valeurs des éléments HTML et on les stocke dans l'objet schedules
-    // schedules[index].day = document.getElementById('joursAdmin'+ index).value;
     schedules[index].open_time = document.getElementById('open_time' + index).value
     schedules[index].close_time = document.getElementById('close_time' + index).value
     schedules[index].nb_max_clients = document.getElementById('nb_clients' + index).value
-    // On crée un objet FormData qui sera utilisé pour l'envoi des données
     const formData = new FormData();
-    // On ajoute les horaires sous forme de chaîne JSON à l'objet FormData
     let data = { day: schedules[index].day, open_time: schedules[index].open_time, close_time: schedules[index].close_time, nb_max_clients: schedules[index].nb_max_clients };
-    // On envoie les données au serveur et on récupère le résultat
     var result = await postData('schedules/' + schedules[index].schedule_id, data)
-    // Si le résultat est valide et que les horaires ont été modifiés, on met à jour l'état de l'application
     if (result && result.schedule)
       schedules[index] = result.schedule
     setSchedules(schedules.map((elv) => elv));
-    // On remet à zéro le mode d'édition des horaires
     blnEditSchedules[index] = false;
     setBlnEditSchedules(blnEditSchedules.map((els) => els));
   }
@@ -216,7 +209,7 @@ const HomeAdmin = () => {
     getData('illustrations').then((result) => {
       result.sort((a, b) => {
         return a.position > b.position ? 1 : -1
-      })
+      });
       setIllustrations(result)
       let previewArray = []
       let fileArray = []
@@ -236,7 +229,7 @@ const HomeAdmin = () => {
 
   // Cette fonction est appelée à l'initialisation de l'application et permet de récupérer les données nécessaires
   useEffect(() => {
-    // On récupère les illustrations
+    
     getIllustrations()
 
     getData('article/acceuil').then((result) => {
@@ -322,7 +315,6 @@ const HomeAdmin = () => {
             }
             <div className="navigation_Admin">
               <input className="input_active" type="checkbox" disabled={!blnEditIllustrations[i]} defaultChecked={illustration.active === 1} id={"illustrations_checkbox" + i} />
-
               {!blnEditIllustrations[i] ?
                 <IconEdit onClick={() => toggleEditIllustration(i)} />
                 :
@@ -330,7 +322,6 @@ const HomeAdmin = () => {
                   {illustration.illustration_id > 0 && <IconDelete onClick={() => handelDeleteIllustration(i)} />}
                   <IconSave onClick={() => saveIllustration(i)} />
                   <IconCancel className="text-danger" onClick={() => toggleEditIllustration(i)} />
-
                 </>}
               {(blnEditIllustrations[i] && illustration.illustration_id > 0) &&
                 <div className="navigation_flechesAdmin">
