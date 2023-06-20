@@ -67,10 +67,5 @@ async function getData(params) {
     return result;
 }
 
-// exportation de la fonction getData pour qu'elle soit disponible dans d'autres fichiers
-// exportation de la fonction postFormData pour qu'elle soit disponible dans d'autres fichiers
-// exportation de l'URL du serveur pour qu'elle soit disponible dans d'autres fichiers
-// exportation de la fonction putData pour qu'elle soit disponible dans d'autres fichiers
-// exportation de la fonction postData pour qu'elle soit disponible dans d'autres fichiers
 
 export  {getData,putData,url_server,postData,postFormData, deleteData }

@@ -3,6 +3,7 @@ import { deleteData, postData, getData, url_server, putData, postFormData } from
 import Uploadfile from "../../components/uploadfile";
 import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp, IconCancel } from "../../lib/icons";
 import "../admin/HomeAdmin.css";
+// import "../admin/Commun.module.css";
 
 const HomeAdmin = () => {
   //  varibles d'etats
@@ -58,6 +59,7 @@ const HomeAdmin = () => {
   }
 
   //////////////////////////////////////////////////////////////////////////////////
+  // ajout dune illustration
 
   const newIllustration = async () => {
     const illustration = {
@@ -113,16 +115,16 @@ const HomeAdmin = () => {
     // Préparer les données pour l'envoi
     const formData = new FormData();
     if (illustrationsFilePicture[index]) {
-      formData.append('picture', illustrationsFilePicture[index]);
-    }
+      formData.append('picture', illustrationsFilePicture[index]);}
+
     formData.append('illustration', JSON.stringify({ title: illustrations[index].title, active: illustrations[index].illustrations_checkbox }));
     // Envoyer la requête POST avec les données
     if (illustrations[index].illustration_id === 0) {
-      var result = await postFormData('illustrations/', formData);
+      const result = await postFormData('illustrations/', formData);
       if (result) setIllustrations(result)
 
     } else {
-      var result = await postFormData('illustrations/' + illustrations[index].illustration_id, formData);
+      const result = await postFormData('illustrations/' + illustrations[index].illustration_id, formData);
       if (result && result.illustration) {
         illustrations[index] = result.illustration
         setIllustrations(illustrations.map((elt) => elt))
@@ -319,7 +321,8 @@ const HomeAdmin = () => {
                 <IconEdit onClick={() => toggleEditIllustration(i)} />
                 :
                 <>
-                  {illustration.illustration_id > 0 && <IconDelete onClick={() => handelDeleteIllustration(i)} />}
+                  {illustration.illustration_id > 0 &&
+                   <IconDelete onClick={() => handelDeleteIllustration(i)} />}
                   <IconSave onClick={() => saveIllustration(i)} />
                   <IconCancel className="text-danger" onClick={() => toggleEditIllustration(i)} />
                 </>}
@@ -331,7 +334,6 @@ const HomeAdmin = () => {
                     <IconDown onClick={() => swapOrder(i, 1)} />}
                 </div>}
             </div>
-
           </div>
         );
       })}

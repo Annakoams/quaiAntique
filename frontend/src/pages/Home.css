@@ -36,26 +36,31 @@
     border-radius: 3px;
     box-shadow: 0px 0px 23px 0px rgba(9, 10, 0, 0.75);
     background-color: #334c81;
-    width: 180px;
-    height: 50px;
+    width: 250px;
+    height: 70px;
     color: #f1f1f1;
     cursor: pointer;
     border: none;
+    font-size: 25px;
+    margin-top: 25px;
 }
 
 
 /* section illustrations */
 .container_illustration {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 70px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    align-content: space-around;
 
 }
 
 .illustration {
-    width: 180px;
+    width: 200px;
+    
+    height: auto;
     margin: 20px;
     box-shadow: 0px 10px 13px -7px #000000, 0px 0px 3px 0px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
@@ -80,6 +85,7 @@
 /* section edito */
 .container_edito {
     width: 100%;
+    margin-top: 100px;
     padding-top: 100px;
     display: flex;
     justify-content: space-around;
@@ -114,6 +120,25 @@
     height: auto;
     object-fit: cover;
 }
+.container_button{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn_decouvrirNotreCarte{
+    border-radius: 3px;
+    /* box-shadow: 0px 0px 23px 0px rgba(9, 10, 0, 0.75); */
+    background-color: #821313cc;
+    width: 200px;
+    height: 60px;
+    color: #f1f1f1;
+    cursor: pointer;
+    border: none;
+ text-align: center;
+  
+
+}
 
 /* media grand mobile et petit tablette */
 @media only screen and (min-width: 600px) and (max-width: 768px) {
@@ -129,7 +154,7 @@
     }
     .img_couvertureHome {
         width: 100vw;
-        height: 40vh;
+        height: 70vh;
         object-fit: cover;
     }
 
@@ -140,7 +165,7 @@
         text-align: center;
         font-family: Playfair Display;
         font-size: 36px;
-        font-weight: 700;
+        font-weight: 500;
         line-height: 1.1em;
     }
 
@@ -153,11 +178,14 @@
         color: #f1f1f1;
         cursor: pointer;
         border: none;
+        font-size: 18px;
+        margin-top: 25px;
     }
+
 
     .container_illustration {
         width: 100%;
-        margin-top: 100px;
+        margin-top: 20px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -175,7 +203,7 @@
     .container_edito {
         min-width: 80vw;
         margin: auto;
-        padding-top: 100px;
+        padding-top: 30px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -245,7 +273,7 @@
     .container_illustration {
         width: 100%;
         padding: 25px;
-        margin-top: 25px;
+        margin-top: 1px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -280,7 +308,7 @@
     .container_edito {
         min-width: 80vw;
         margin: auto;
-        padding-top: 100px;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;

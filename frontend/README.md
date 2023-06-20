@@ -74,7 +74,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 npm i -D react-router-dom
 npm install react-bootstrap bootstrap
 npm i swiper
-npm i node-sass
 npm install react-bootstrap-icons --save
 
 fortawsome
@@ -94,3 +93,7 @@ npm install jsonwebtoken
 
 
 npm install multer
+
+npm i react-responsive-carousel
+
+npm i craco-plugin-scoped-css --dev

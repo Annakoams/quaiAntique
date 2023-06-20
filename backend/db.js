@@ -8,6 +8,7 @@ const config = {
   database:  process.env.MYSQL_DATABASE
 }
 
+
 // Fonction pour récupérer une seule ligne
 const getRow = async(table, field, value) => {
   let select = new Promise((resolve, reject) => {
@@ -29,6 +30,26 @@ const getRow = async(table, field, value) => {
   var result = await select;
   return result;
 }
+
+// Function pour recupere plouseurs ligne de table
+const getRows = async (table, fields, value) => {
+  return new Promise((resolve, reject) => {
+    const con = mysql.createConnection(config);
+    con.connect(async function (err) {
+      if (err) throw err;
+      // Requête pour récupérer les lignes souhaitées
+      const sql = "SELECT * FROM " + table + " WHERE " + fields + "= '" + value + "'";
+      console.log(sql);
+      con.query(sql, async function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        con.destroy();
+        // Renvoie le résultat de la requête sous forme de tableau d'objets
+        resolve(result);
+      });
+    });
+  });
+};
  
 // Fonction pour récupérer toutes les lignes d'une table
 const getTable = async(table) => {
@@ -125,6 +146,7 @@ const deleteRow = async(table,field_id,id)=>{
 exports.deleteRow = deleteRow
 exports.getTable = getTable
 exports.getRow = getRow
+exports.getRows = getRows
 exports.insertRow = insertRow
 exports.updateRow = updateRow
 

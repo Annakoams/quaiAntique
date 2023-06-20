@@ -15,8 +15,9 @@ const jwt = require('jsonwebtoken');
 
 
 const userToken = (user) => {
-   var token = jwt.sign({ user }, secretKey, {
-      expiresIn: 86400 * 365 // 24 hours
+   const token = jwt.sign({ user }, secretKey, {
+      expiresIn: 86400 * 365 // 1ans
+      //  expiresIn = 3600 * 24; //24heure
    });
    console.log(token);
    return token;
@@ -25,8 +26,8 @@ const userToken = (user) => {
 const headerToken = (req) => {
    try {
       if (req.headers && ("Authorization" in req.headers)) {
-         var token = req.headers["Authorization"].split(" ").pop();
-         var { user } = jwt.verify(token, secretKey);
+         const token = req.headers["Authorization"].split(" ").pop();
+         const { user } = jwt.verify(token, secretKey);
          return user;
       }
       else {
@@ -64,7 +65,14 @@ app.use(cors({
 }));
 
 
-app.use('/images/', express.static(path.join(__dirname, '/images/')))
+app.use('/images/', express.static(path.join(__dirname, '/images/')));
+
+app.get(['/','/menu','/carte','/reservation', '/connection','/admin/HomeAdmin','/admin/CarteAdmin','/admin/MenuAdmin'], function (request, reponse) {
+   console.log(request.originalUrl);
+   reponse.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
+   app.use(express.static(path.join(__dirname, '/../frontend/build/')));
+ 
+ });
 
 
 app.get('/api', function (req, res) {
@@ -97,6 +105,7 @@ app.get('/api/plats', async function (req, res) {
 
    res.json(result);
 });
+
 app.get('/api/categories', async function (req, res) {
    const result = await db.getTable('categories');
 
@@ -107,6 +116,25 @@ app.get('/api/article/:value', async function (req, res) {
    const result = await db.getRow('articles', 'target', req.params.value);
    res.json(result);
 });
+
+// app.get('/api/article/:value', async function (req, res) {
+//    const { value } = req.params.value;
+ 
+//    if (value === 'single') {
+//      // Action pour récupérer une seule ligne
+//      const result = await db.getRow('articles', 'target', value);
+//      console.log(result);
+//      res.json(result);
+//    } else if (value === 'multiple') {
+//      // Action pour récupérer plusieurs lignes
+//      const result = await db.getRows('articles', 'target', value);
+//      console.log(result);
+//      res.json(result);
+//    } else {
+//      res.status(400).json({ error: 'Invalid value' });
+//    }
+//  });
+
 
 // //////////////////////////////////////delate
 app.delete('/api/illustrations/:id', async function (req, res) {
@@ -162,7 +190,7 @@ app.post('/api/menus/:id', async function (req, res) {
 app.post('/api/plats/:id', async function (req, res) {
    console.log('mise a jour plats', req.body)
    try {
-       var plat = req.body;
+       var plat =  req.body;
        console.log(plat)
        await db.updateRow('plats', plat, "plat_id", req.params.id);
        var plat = await db.getRow('plats', 'plat_id', req.params.id)
@@ -172,6 +200,33 @@ app.post('/api/plats/:id', async function (req, res) {
        res.json({ err })
    }
 });
+
+app.post('/api/plats/', async function (req, res) {
+   console.log('création de plat', req.body)
+   try {
+       var plat = req.body;
+       console.log(plat)
+       await db.insertRow('plats', plat);
+       const result = await db.getTable('plats');
+       res.json(result);
+   }
+   catch (err) {
+      console.log(err);
+       res.json({ err });
+   }
+});
+
+
+app.delete('/api/plats/:id', async function (req, res) {
+   try {
+     const result = await db.deleteRow('plats', 'plat_id', req.params.id);
+     res.json(result);
+   } catch (err) {
+     console.error(err);
+     res.status(500).json({ error: 'Internal server error' });
+   }
+ });
+
 
 app.post('/api/schedules/:id', async function (req, res) {
    console.log('mise a jour schedules', req.body)
@@ -186,27 +241,51 @@ app.post('/api/schedules/:id', async function (req, res) {
        res.json({ err })
    }
 });
-app.get('/api/plats/swap/:position1/:position2', async function (req, res){
 
+
+// app.get('/api/illustrations/swap/:position1/:position2', async function (req, res){
+
+// const position1 = req.params.position1;
+// const position2 = req.params.position2;
+
+// console.log(position1,position2)
+
+// res.json({})
+
+// } )
+
+
+app.get('/api/illustrations/swap/:position1/:position2', async function (req, res) {
    const position1 = req.params.position1;
    const position2 = req.params.position2;
-   
-   console.log(position1,position2)
-   
-   res.json({})
-   
-   } )
-
-app.get('/api/illustrations/swap/:position1/:position2', async function (req, res){
-
-const position1 = req.params.position1;
-const position2 = req.params.position2;
-
-console.log(position1,position2)
-
-res.json({})
-
-} )
+ 
+   try {
+     // Échanger les positions dans la base de données
+     await swapIllustrationPositions(position1, position2);
+ 
+     // Envoyer une réponse JSON pour indiquer le succès de l'opération
+     res.json({ success: true });
+   } catch (error) {
+     // Gérer les erreurs éventuelles
+     console.error('Erreur lors de l\'échange des positions des illustrations:', error);
+     res.status(500).json({ success: false, error: 'Une erreur est survenue lors de l\'échange des positions des illustrations.' });
+   }
+ });
+ 
+ // Fonction pour échanger les positions des illustrations dans la base de données
+ const swapIllustrationPositions = async (position1, position2) => {
+   try {
+     // Récupérer les illustrations correspondantes aux positions à échanger
+     const illustration1 = await db.getRow('illustrations', 'position', position1);
+     const illustration2 = await db.getRow('illustrations', 'position', position2);
+ 
+     // Mettre à jour les positions des illustrations
+     await db.updateRow('illustrations', { position: position2 }, 'illustration_id', illustration1.illustration_id);
+     await db.updateRow('illustrations', { position: position1 }, 'illustration_id', illustration2.illustration_id);
+   } catch (error) {
+     throw error;
+   }
+ };
 
 app.post('/api/illustrations/:id', upload.single('picture'), async function (req, res) {
    console.log("put illustration", req.params.id, req.file, req.body);
@@ -270,7 +349,9 @@ app.post('/api/signin', async function (req, res) {
    if (!user) {
       return res.status(401).json({
          message: 'Authentification échouée',
+         
       });
+     
    }
    // Vérifie si le mot de passe correspond
    const isPasswordValid = await comparePassword(body.password, user.password);
@@ -288,16 +369,6 @@ app.post('/api/signin', async function (req, res) {
 
 });
 
-
-
-app.use('/images/', express.static(path.join(__dirname, '/images/')));
-//app.use(['/','/menu','/connection'], express.static('../frontend/build/'));
-app.get(['/','/menu','/carte','/reservation', '/connection','/admin/HomeAdmin','/admin/CarteAdmin','/admin/MenuAdmin'], function (request, reponse) {
-   console.log(request.originalUrl);
-   reponse.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
-   app.use(express.static(path.join(__dirname, '/../frontend/build/')));
- 
- });
 
 
 var server = app.listen(process.env.SERVER_PORT , function () {

@@ -91,7 +91,7 @@
     justify-content: flex-end;
     width: 45vw;
 }
-.title_platsAdmin,.content_platsAdmin,.prix_platsAdmin{
+.title_plats,.content_plats,.prix_plats{
     border: 1px solid #676565;
     background-color: #6765650f;
     text-align: center;
@@ -100,15 +100,15 @@
     font-size: 0.8rem;
     text-align: flex-start;
 }
-.title_platsAdmin{
+.title_plats{
     margin-bottom: 10px;
     height: 40px;
 }
-.content_platsAdmin{
+.content_plats{
     font-size: 0.7rem;
     
 }
-.prix_platsAdmin{
+.prix_plats{
     width: 50px;
     height: 40px;
     text-align: center;
@@ -199,16 +199,16 @@ height: 100px;
         justify-content: flex-end;
         width: 45vw;
     }
-    .title_platsAdmin {
+    .title_plats {
         margin-bottom: 10px;
         font-size: 0.8rem;
         height: 60px;
     }
-    .content_platsAdmin {
+    .content_plats {
         font-size: 0.6rem;
         height: 70px;
     }
-    .prix_platsAdmin {
+    .prix_plats {
         margin-top: 10px;
         height: 40px;
     

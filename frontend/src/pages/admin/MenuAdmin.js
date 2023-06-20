@@ -3,6 +3,7 @@ import { postData, getData, url_server, putData, postFormData  } from "../../lib
 import Uploadfile from "../../components/uploadfile";
 import { IconAdd, IconEdit, IconDelete, IconSave, IconDown, IconUp, IconCancel } from "../../lib/icons";
 import "../admin/MenuAdmin.css";
+// import "../admin/Commun.module.css";
 
 const Menu = () => {
 
@@ -179,23 +180,7 @@ const saveCoverMenu = async () => {
                 ))}
             </section>
             <p className="intituleAdmin">Ajouter un noveau Menu</p>
-            <section className="section_MenuAdmin">
-                <div className="ajouter_menuAdmin">
-                    <div className="btn_ajouterImageAdmin">
-                        <IconAdd/>
-                        <p className="textAjouter_Admin">Ajouter un noveau Menu</p>
-                    </div>
-                    <div className="inputs_ajouterMenuAdmin">
-                        <input className="categorie"  placeholder="Choisiser le categorie" type="text" />
-                        <input className="title" placeholder="Saisissez le titre du plat le categorie"  type="text" />
-                        <input className="description" placeholder="Decrire le plats"  type="text" />
-                        <input className="prix" placeholder="Prix"  type="text" />
-                    </div>
-                    <div className="input_ajouterIconsAdmin">
-                    <IconSave  onClick={() => saveMenus(menu)} />
-                    </div>
-                </div>
-            </section></>
+</>
     );
 };
 

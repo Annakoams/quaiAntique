@@ -27,7 +27,7 @@
     font-weight: 500;
     
 }
-.prix_title{
+.prix_titleCarte{
     display: flex;
     justify-content: space-between;
     font-size: 25px;
@@ -78,16 +78,16 @@
         font-weight: 500;
         
     }
-    .title_plats{
+    .title_platsCarte{
         font-size: 16px;
     }
-    .prix_title{
+    .prix_titleCarte{
         display: flex;
         justify-content: space-between;
         font-size: 16px;
         font-weight: 200;
     }
-    .content_plats{
+    .content_platsCarte{
         font-size: 10px;
     }
 

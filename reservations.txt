@@ -14,15 +14,13 @@ const Reservation = () => {
   const date = new Date();
 
   const choix_couverts =Array.from({length: 12}, (v, k) => k+1); 
-  
   const choix_morning_hours =[ "12:00", "12:15", "12:30", "12:45","13:00","13:15", "13:30", "13:45","14:00" ]; 
-  const choix_evening_hours =[ "19:00", "19:15", "19:30","19:45","20:00","20:15", "20:30", "20:45","24:00" ]; 
+  const choix_evening_hours =[ "19:00", "19:15", "19:30","19:45","20:00","20:15", "20:30", "20:45","24:00","20:15", "20:30", "20:45" ]; 
 
   const choix_dates = Array.from({length: 12}, (v, k) => {
     const currentDate = new Date(Date.now() + 24 * 60 * 60 * 1000 * k);
     return currentDate.toDateString();
   }); 
-
 
 
   const [msgErrorResa, setMsgErrorResa] = useState("");
@@ -39,7 +37,7 @@ const Reservation = () => {
   useEffect(() => {
     /** verification si le visiteur est connecté */
 
-    const stringUser = localStorage.getItem("user");
+    var stringUser = localStorage.getItem("user");
 
     if (stringUser) {
       const user = JSON.parse(stringUser);
@@ -58,7 +56,7 @@ const Reservation = () => {
 
   const verificationEmail = (email) => {
 
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
@@ -137,15 +135,14 @@ navigate("/")
       <div className='container_resa'>
         <h4 className='title_hour'>DEJEUNER</h4>
         <div className=' grid container_hour'>
-          {   choix_morning_hours.map(hour=>     <div key={hour} className={'hour ' + (hour===reservationHours ? " bg-dark":"")   }  onClick={()=>setReservationHours(hour) }   >{hour}</div> )  }
+          {   choix_morning_hours.map(hour=>     <div key={hour} className={'hour ' + (hour==reservationHours ? " bg-dark":"")   }  onClick={()=>setReservationHours(hour) }   >{hour}</div> )  }
          
         </div>
       </div>
       <div className='container_resa'>
         <h4 className='title_hour'>DINER</h4>
         <div className=' grid container_hour'>
-        {   choix_evening_hours.map(hour=>    
-           <div key={hour} className={'hour ' + (hour==reservationHours ? " bg-dark":"")   }  onClick={()=>setReservationHours(hour) }   >{hour}</div> )  }
+        {   choix_evening_hours.map(hour=>     <div key={hour} className={'hour ' + (hour==reservationHours ? " bg-dark":"")   }  onClick={()=>setReservationHours(hour) }   >{hour}</div> )  }
         </div>
       </div>
       <div className='containeur_btn'>

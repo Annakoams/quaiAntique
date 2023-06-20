@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getData, url_server  } from "../lib/api";
+import { Outlet, Link } from "react-router-dom";
 import './Carte.css'
 
 
@@ -51,17 +52,23 @@ const Carte = () => {
               .filter(plat => plat.categorie_id == item.categorie_id)
               .map(plat => (
                 <ul className="plats" key={plat.plat_id}>
-                  <div className="prix_title">
-                    <li className="title_plats">{plat.name}</li>
-                    <li className="prix_plats">{plat.price + '€'}</li>
+                  <div className="prix_titleCarte">
+                    <li className="title_platsCarte">{plat.name}</li>
+                    <li className="prix_platsCarte">{plat.price + '€'}</li>
                   </div>
-                  <li className="content_plats">{plat.description}</li>
+                  <li className="content_platsCarte">{plat.description}</li>
                 </ul>
               ))}
           </div>
         ))}
 
-      </section></>
+      </section>
+      <div className="container_button">
+          <button className="btn_decouvrirNotreCarte">
+                <Link to="/menu">Découvrez notre menu</Link>
+              </button>
+    </div>
+    </>
   );
 
 

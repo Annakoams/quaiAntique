@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getData, url_server } from "../lib/api";
+import { Outlet, Link } from "react-router-dom";
 import './Menu.css'
 
 const Menu = () => {
@@ -47,7 +48,17 @@ const Menu = () => {
 
           </ul>
         ))}
-      </section></>
+      </section>
+      <div className="container_button">
+          <button className="btn_reserverVotreTable">
+          <Link to="/reservation">Réserver votre table</Link>
+              </button>
+    </div>
+      
+      
+      
+      
+      </>
   );
 };
 

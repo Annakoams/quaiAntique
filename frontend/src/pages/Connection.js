@@ -91,6 +91,8 @@ function Connection({ setUser }) {
     const result = await postData('signup', { email, password, allergies });
     if (result === 'OK') {
       setInscriptionExist(true);
+      navigate("/reservation");
+      alert("Félicitations, votre inscription a réussi !");
       
     }
     else {
@@ -101,6 +103,8 @@ function Connection({ setUser }) {
   const signIn = async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+
+    
     const result = await postData('signin', { email, password });
 
     if (result.token) {
@@ -108,7 +112,9 @@ function Connection({ setUser }) {
       localStorage.setItem("token", result.token)
       localStorage.setItem("user", JSON.stringify(result.user))
       setUser(result.user);
-      navigate("/reservation");
+      
+    }else{
+      setMsgPasswordError('Saisissez un mot de passe valide')
     }
   }
 
@@ -172,7 +178,7 @@ function Connection({ setUser }) {
           <label htmlFor="password">Confirmer le mot de passe</label>
           <div className='flex flex-row'>
             <input className='input' type={showPassword ? 'text' : "password"} id="password2" name="password2" />
-            {/* <FontAwesomeIcon  className="eye" icon={ fa.faEye} onClick={()=>{setShowPassword2(!showPassword2)}} /> */}
+         
 
           </div>
         </div>
