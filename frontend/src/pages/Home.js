@@ -67,6 +67,7 @@ const Home = () => {
       })}
     </section> */}
      <section className="container_illustration">
+     <div className="titre_illustrations_gurmandises">Plongez dans l'univers succulent de nos délices gastronomiques:</div>
     <Illustration />
     </section> 
 

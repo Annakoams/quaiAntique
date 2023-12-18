@@ -1,13 +1,33 @@
 // définition de l'URL du serveur 
 const url_server = (window.location.port==="3000"? "http://"+ window.location.hostname +":8081/"  :"/" );
 
+
+const getTokenHeader = ()=>{
+    const token  = window.localStorage.getItem("token");
+
+   if(token){
+    return {  "Authorization":"Bearer " + token};    
+   }
+   else 
+   {
+    return {}
+   }
+}
+
+
 // fonction asynchrone pour envoyer une requête POST à l'API
 async function postData(params, data) {
+
+
+
+
+
     const response = await fetch(url_server + 'api/' + params, 
     {
         method:'POST',
         headers:{
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+              ...getTokenHeader()
             },
         body:JSON.stringify(data)
     }
@@ -20,7 +40,11 @@ async function postData(params, data) {
 
 async function deleteData(params) {
     const response = await fetch(url_server + 'api/' + params, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers:{
+       
+          ...getTokenHeader()
+        },
     });
     const result = await response.json();
     console.log(result);
@@ -33,7 +57,9 @@ async function putData(params, data) {
     {
         method:'PUT',
         headers:{
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+
+          ...getTokenHeader()
             },
         body:JSON.stringify(data)
     }
@@ -49,7 +75,8 @@ async function postFormData(params, formData) {
     {
         method:'POST',
         headers:{
-        // 'Content-Type':'multipart/form-data'
+        // 'Content-Type':'multipart/form-data',
+        ...getTokenHeader()
             },
         body:formData
     }
@@ -61,7 +88,14 @@ async function postFormData(params, formData) {
 
 // fonction asynchrone pour envoyer une requête GET à l'API
 async function getData(params) {
-    const response = await fetch(url_server + 'api/' + params);
+    const response = await fetch(url_server + 'api/' + params,{
+
+        method: 'GET',
+        headers:{
+            ...getTokenHeader()
+        }
+                
+    });
     const result = await response.json();
     console.log(result);
     return result;

@@ -10,6 +10,8 @@ function Connection({ setUser }) {
   const navigate = useNavigate();
 
   const [msgEmailError, setMsgEmailError] = useState("");
+  const [msgUsernameError, setMsgUsernameError] = useState("");
+  
   const [msgPasswordError, setMsgPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false)
   const [showPassword2, setShowPassword2] = useState(false)
@@ -69,16 +71,23 @@ function Connection({ setUser }) {
 
   const signUp = async () => {
     const email = document.getElementById('email').value;
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const password2 = document.getElementById('password2').value;
     const allergies1 = document.getElementById('allergies1').value;
     const allergies2 = document.getElementById('allergies2').value;
     setMsgEmailError("");
+    setMsgUsernameError("");
     setMsgPasswordError("");
     if (!verificationEmail(email)) {
       setMsgEmailError('Saisissez une adresse mail valide');
       return;
     }
+    if (username.length <= 3) {
+      setMsgUsernameError('Saisissez un username de plus de 3 lettres');
+      return;
+    }
+
     if (verificationPassword(password)) {
       setMsgPasswordError('Saisissez un mot de passe valide');
       return;
@@ -88,14 +97,19 @@ function Connection({ setUser }) {
       return;
     }
     const allergies = allergies1 + ", " + allergies2
-    const result = await postData('signup', { email, password, allergies });
-    if (result === 'OK') {
-      setInscriptionExist(true);
-      navigate("/reservation");
+    const result = await postData('signup', { email, name: username, password, allergies });
+  
+     if (result.token) {
       alert("Félicitations, votre inscription a réussi !");
+      // Stockage du token dans localStorage
+      localStorage.setItem("token", result.token)
+      localStorage.setItem("user", JSON.stringify(result.user))
+      setUser(result.user);
+       navigate("/")
+  
       
-    }
-    else {
+    }else{
+
       alert('inscription echoue');
     }
   };
@@ -106,16 +120,20 @@ function Connection({ setUser }) {
 
     
     const result = await postData('signin', { email, password });
+  
 
     if (result.token) {
       // Stockage du token dans localStorage
       localStorage.setItem("token", result.token)
       localStorage.setItem("user", JSON.stringify(result.user))
       setUser(result.user);
+       navigate("/")
+  
       
     }else{
       setMsgPasswordError('Saisissez un mot de passe valide')
     }
+
   }
 
   const [inscriptionExist, setInscriptionExist] = useState(true);
@@ -155,6 +173,11 @@ function Connection({ setUser }) {
         <label htmlFor="email">Veuillez saisir votre adresse email</label>
         <input className='input' type="text" id="email" name="email" />
         <h6 className='text-danger '>{msgEmailError} </h6>
+      </div>
+      <div className='container_input'>
+        <label htmlFor="username">Veuillez saisir votre username</label>
+        <input className='input' type="text" id="username" name="username" />
+        <h6 className='text-danger '>{msgUsernameError} </h6>
       </div>
       <div className='container_input'>
         <label htmlFor="password">Mot de passe</label>

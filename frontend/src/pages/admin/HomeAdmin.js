@@ -285,7 +285,6 @@ const HomeAdmin = () => {
             <>
               <IconSave onClick={() => saveCover(carte)} />
               <IconCancel className="text-danger" onClick={() => setBlnEditCover(false)} />
-
             </>
           }
 

@@ -45,6 +45,7 @@ const Illustration = () => {
 
   return (
     <section className="container_illustration">
+      
       {illustrations.map((illustration, index) => (
         <Motion
           key={illustration.illustration_id}

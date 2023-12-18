@@ -79,31 +79,43 @@ const Layout = ({ user, setUser }) => {
     setToggleMenu(!toggleMenu);
   };
 
+  const changeWidth = () => {
+    setLargeur(window.innerWidth);
+    if (window.innerWidth > 980) {
+      setToggleMenu(true);
+      setIsMobile(false)
+
+    } else {
+      setToggleMenu(false);
+      setIsMobile(true)
+    }
+  };
+
   // ouvrir et fermer le burger
   useEffect(() => {
-    const changeWidth = () => {
-      setLargeur(window.innerWidth);
-      if (window.innerWidth > 980) {
-        setToggleMenu(true);
-        setIsMobile(false)
 
-      } else {
-        setToggleMenu(false);
-        setIsMobile(true)
-      }
-    };
     window.addEventListener("resize", changeWidth);
     return () => {
       window.removeEventListener("resize", changeWidth);
     };
+
+    changeWidth();
+
   }, []);
+
+
+const gotoHome = () => {
+
+  navigate("/");
+  changeWidth();
+}
 
   return (
     <>
     {/* <nav className={`navbar ${fix ? 'fixed-nav' : ''}`}></nav> */}
       <nav >
         <div className="container_navbar">
-        <Link to="/"><img className="logo" src={logo} alt="logo de quai d'antique" /></Link>
+       <img className="logo" src={logo} alt="logo de quai d'antique" onClick={gotoHome}  />
           {/* short circuit operator */}
           {toggleMenu && (
             <div className="container-liste">
@@ -119,14 +131,14 @@ const Layout = ({ user, setUser }) => {
                     <li className="item nav-item" key="reservation">
                       <Link to="/reservation">Reservation</Link>
                     </li>
-                    {
-                      user && user.user_type === "admin" ?
+                    {user && user.user_type === "admin" ?
                         <div className="">
                           <li  >
                           <button className="rounded bg-light p-2 text-dark mb-sm-3 mb-lg-0  "
                         key="home" onClick={() => setAdminMode(true)}>Mode Admin</button>
                           </li>
-                        </div> : <></>}
+                        </div> : <></>
+                        }
                   </>
                   :
                   <> <li className="item nav-item" key="homeAdmin">
@@ -137,6 +149,13 @@ const Layout = ({ user, setUser }) => {
                     </li>
                     <li className="item nav-item" key="menuAdmin">
                       <Link to="admin/MenuAdmin">Menu</Link>
+                      
+                    </li>
+                    <li className="item nav-item" key="usersAdmin">
+                      <Link to="admin/UsersAdmin">Users</Link>
+                    </li>
+                    <li className="item nav-item" key="resasAdmin">
+                      <Link to="admin/ReservationsAdmin">Résas</Link>
                     </li>
                     <div>
                       <li >
@@ -147,7 +166,8 @@ const Layout = ({ user, setUser }) => {
                   </>
                 }
                 <li >
-                  {user ?
+                  { 
+                  user ?
                     <>
                       <button className="btn_connectez p-2"
                         key="home" onClick={logOut}>Deconnection, {user.name }</button>

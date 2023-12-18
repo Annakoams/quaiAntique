@@ -10,6 +10,8 @@ import NoPage from "./pages/NoPage";
 import HomeAdmin from "./pages/admin/HomeAdmin.js"
 import CarteAdmin from "./pages/admin/CarteAdmin"
 import MenuAdmin from "./pages/admin/MenuAdmin"
+import ReservationsAdmin from "./pages/admin/ReservationsAdmin"
+import UsersAdmin from "./pages/admin/UsersAdmin"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {  useState,useEffect } from "react";
 import './index.css'
@@ -43,6 +45,8 @@ setUser(_user)
           <Route path="admin/HomeAdmin" element={<HomeAdmin/>}/>
           <Route path="admin/CarteAdmin" element={<CarteAdmin/>}/>
           <Route path="admin/MenuAdmin" element={<MenuAdmin/>}/>
+          <Route path="admin/ReservationsAdmin" element={<ReservationsAdmin/>}/>
+          <Route path="admin/UsersAdmin" element={<UsersAdmin/>}/>
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

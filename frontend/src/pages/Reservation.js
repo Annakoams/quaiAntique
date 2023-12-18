@@ -96,7 +96,7 @@ reservation.name = name;
 reservation.email= email;
 reservation.nb_guests = nbGuests;
 reservation.allergies = allergies;
-reservation.reservation_date =   new Date(  reservationDate + " " + reservationHours).toISOString() ;
+reservation.reservation_date =   new Date(  reservationDate + " " + reservationHours + 2).toISOString() ;
 //// La validation 
 const result = await postData('resa',reservation);
 

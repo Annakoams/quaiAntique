@@ -49,16 +49,26 @@
 /* section illustrations */
 .container_illustration {
     width: 100%;
-    margin-top: 70px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    align-content: space-around;
+    align-content: space-between;
 
 }
+.titre_illustrations_gurmandises{
+    margin-top: 40px;
+    color:#4d4c4c;
+    text-align: center;
+    font-family: Playfair Display;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2em;
+}
+
 
 .illustration {
-    width: 200px;
+    width: 250px;
     
     height: auto;
     margin: 20px;

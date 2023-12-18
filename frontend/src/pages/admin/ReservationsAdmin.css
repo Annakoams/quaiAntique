@@ -1,0 +1,39 @@
+
+.section_CarteAdmin{
+    width: 80vw;
+    margin: 25px auto 10px auto;
+    border: 1px solid #676565;
+    padding: 25px;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+    border: #676565;
+   
+  }
+  
+  thead th:nth-child(1) {
+    width: 15%;
+  }
+  
+  thead th:nth-child(2) {
+    width: 20%;
+  }
+  
+  thead th:nth-child(3) {
+    width: 15%;
+  }
+  
+  thead th:nth-child(4) {
+    width: 15%;
+  }
+  thead th:nth-child(5) {
+    width: 15%;
+  }
+  thead th:nth-child(5) {
+    width: 15%;
+  }
+  
+  th, td {
+    padding: 2%;
+  }
