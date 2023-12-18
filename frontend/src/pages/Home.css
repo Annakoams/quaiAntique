@@ -51,9 +51,9 @@
     width: 100%;
     margin-top: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    align-content: space-between;
+    /* align-content: ; */
 
 }
 .titre_illustrations_gurmandises{
@@ -61,7 +61,7 @@
     color:#4d4c4c;
     text-align: center;
     font-family: Playfair Display;
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     line-height: 1.2em;
 }
@@ -201,6 +201,15 @@
         flex-wrap: wrap;
     
     }
+    .titre_illustrations_gurmandises{
+        margin-top: 40px;
+        color:#4d4c4c;
+        text-align: center;
+        font-family: Playfair Display;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.2em;
+    }
     
     .illustration {
         width: 180px;
@@ -262,7 +271,7 @@
         color: white;
         text-align: center;
         font-family: Playfair Display;
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 700;
         line-height: 1.1em;
     }
@@ -271,9 +280,9 @@
         border-radius: 10px;
         box-shadow: 0px 0px 23px 0px rgba(0, 0, 0, 0.75);
         background-color: #334c81;
-        width: 150px;
-        height: 40px;
-        font-size: 14PX;
+        width: 200px;
+        height: 50px;
+        font-size: 20px;
         color: #f1f1f1;
         cursor: pointer;
         border: none;
@@ -289,6 +298,15 @@
         justify-content: flex-start;
         box-sizing: border-box;
 
+    }
+    .titre_illustrations_gurmandises{
+        margin-top: 40px;
+        color:#4d4c4c;
+        text-align: center;
+        font-family: Playfair Display;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 1.2em;
     }
 
     .illustration {
